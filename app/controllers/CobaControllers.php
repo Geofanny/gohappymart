@@ -3,6 +3,9 @@
 class CobaControllers extends Controller{
     public function index()
     {
+
+        // $data['nama'] = $this->model('Coba')->getUser();
+
         // echo 'index coba aja';
         // $this->view('dashboard/admin/layouts/header');
         $this->view('dashboard/admin/index');

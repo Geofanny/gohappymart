@@ -22,11 +22,8 @@
     <meta name="author" content="CodedThemes" />
 
     <!-- [Favicon] icon -->
-    <link
-      rel="icon"
-      href="../public/assets/dashboard/images/favicon.svg"
-      type="image/x-icon"
-    />
+    <link rel="icon" href="/gohappymart/public/assets/dashboard/images/favicon.svg" type="image/x-icon">
+
     <!-- [Google Font] Family -->
     <link
       rel="stylesheet"
@@ -36,32 +33,32 @@
     <!-- [Tabler Icons] https://tablericons.com -->
     <link
       rel="stylesheet"
-      href="../public/assets/dashboard/fonts/tabler-icons.min.css"
+      href="/gohappymart/public/assets/dashboard/fonts/tabler-icons.min.css"
     />
     <!-- [Feather Icons] https://feathericons.com -->
     <link
       rel="stylesheet"
-      href="../public/assets/dashboard/fonts/feather.css"
+      href="/gohappymart/public/assets/dashboard/fonts/feather.css"
     />
     <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
     <link
       rel="stylesheet"
-      href="../public/assets/dashboard/fonts/fontawesome.css"
+      href="/gohappymart/public/assets/dashboard/fonts/fontawesome.css"
     />
     <!-- [Material Icons] https://fonts.google.com/icons -->
     <link
       rel="stylesheet"
-      href="../public/assets/dashboard/fonts/material.css"
+      href="/gohappymart/public/assets/dashboard/fonts/material.css"
     />
     <!-- [Template CSS Files] -->
     <link
       rel="stylesheet"
-      href="../public/assets/dashboard/css/style.css"
+      href="/gohappymart/public/assets/dashboard/css/style.css"
       id="main-style-link"
     />
     <link
       rel="stylesheet"
-      href="../public/assets/dashboard/css/style-preset.css"
+      href="/gohappymart/public/assets/dashboard/css/style-preset.css"
     />
   </head>
   <!-- [Head] end -->
@@ -993,16 +990,16 @@
     </footer>
 
     <!-- [Page Specific JS] start -->
-    <script src="../public/assets/dashboard/js/plugins/apexcharts.min.js"></script>
-    <script src="../public/assets/dashboard/js/pages/dashboard-default.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/apexcharts.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/pages/dashboard-default.js"></script>
     <!-- [Page Specific JS] end -->
     <!-- Required Js -->
-    <script src="../public/assets/dashboard/js/plugins/popper.min.js"></script>
-    <script src="../public/assets/dashboard/js/plugins/simplebar.min.js"></script>
-    <script src="../public/assets/dashboard/js/plugins/bootstrap.min.js"></script>
-    <script src="../public/assets/dashboard/js/fonts/custom-font.js"></script>
-    <script src="../public/assets/dashboard/js/pcoded.js"></script>
-    <script src="../public/assets/dashboard/js/plugins/feather.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/popper.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/simplebar.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/bootstrap.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/fonts/custom-font.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/pcoded.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/feather.min.js"></script>
 
     <script>
       layout_change("light");
