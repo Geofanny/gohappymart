@@ -9,7 +9,7 @@ class App {
     public function __construct()
     {
         // Ambil semua route dari config
-        $this->routes = require './app/config/routes.php';
+        $this->routes = require '../app/config/routes.php';
 
         // Parse URL
         $url = $this->parseURL();
@@ -21,13 +21,13 @@ class App {
             unset($url[0]);
         }
         // fallback: cocokkan nama file controller langsung
-        else if (isset($url[0]) && file_exists('./app/controllers/' . ucfirst($url[0]) . '.php')) {
+        else if (isset($url[0]) && file_exists('../app/controllers/' . ucfirst($url[0]) . '.php')) {
             $this->controller = ucfirst($url[0]);
             unset($url[0]);
         }
 
         // Muat controller
-        require_once './app/controllers/' . $this->controller . '.php';
+        require_once '../app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
         // METHOD

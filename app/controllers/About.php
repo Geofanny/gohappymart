@@ -1,16 +1,18 @@
-<?php  
+<?php
 
-class About{
-
+class About extends Controller
+{
     public function index()
     {
-        echo "ini halaman index about";
-    }
+        $data['judul'] = 'Tentang Kami';
 
-    public function page()
-    {
-        echo "ini coba";
+        // Tampilkan header
+        $this->view('templates/header', $data);
+
+        // Tampilkan isi utama halaman
+        $this->view('about/index', $data);
+
+        // Tampilkan footer
+        $this->view('templates/footer');
     }
 }
-
-?>
