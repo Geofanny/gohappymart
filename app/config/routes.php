@@ -4,5 +4,6 @@ return [
     ''        => 'Home',              
     'home'    => 'Home',              
     'coba'    => 'CobaControllers',   
-    'nyoba'    => 'NyobaController',   
+    'nyoba'    => 'NyobaController',
+    'keranjang' => 'KeranjangController',
 ];
