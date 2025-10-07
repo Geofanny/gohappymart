@@ -24,7 +24,7 @@
     <!-- [Favicon] icon -->
     <link
       rel="icon"
-      href="../../public/assets/dashboard/images/favicon.svg"
+      href="/gohappymart/public/assets/dashboard/images/favicon.svg"
       type="image/x-icon"
     />
     <!-- [Google Font] Family -->
@@ -36,24 +36,24 @@
     <!-- [Tabler Icons] https://tablericons.com -->
     <link
       rel="stylesheet"
-      href="../../assets/dashboard/fonts/tabler-icons.min.css"
+      href="/gohappymart/public/assets/dashboard/fonts/tabler-icons.min.css"
     />
     <!-- [Feather Icons] https://feathericons.com -->
-    <link rel="stylesheet" href="../../assets/dashboard/fonts/feather.css" />
+    <link rel="stylesheet" href="/gohappymart/public/assets/dashboard/fonts/feather.css" />
     <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
     <link
       rel="stylesheet"
-      href="../../assets/dashboard/fonts/fontawesome.css"
+      href="/gohappymart/public/assets/dashboard/fonts/fontawesome.css"
     />
     <!-- [Material Icons] https://fonts.google.com/icons -->
-    <link rel="stylesheet" href="../../assets/dashboard/fonts/material.css" />
+    <link rel="stylesheet" href="/gohappymart/public/assets/dashboard/fonts/material.css" />
     <!-- [Template CSS Files] -->
     <link
       rel="stylesheet"
-      href="../../assets/dashboard/css/style.css"
+      href="/gohappymart/public/assets/dashboard/css/style.css"
       id="main-style-link"
     />
-    <link rel="stylesheet" href="../../assets/dashboard/css/style-preset.css" />
+    <link rel="stylesheet" href="/gohappymart/public/assets/dashboard/css/style-preset.css" />
   </head>
   <!-- [Head] end -->
   <!-- [Body] Start -->
@@ -72,7 +72,7 @@
         <div class="m-header">
           <a href="../dashboard/index.html" class="b-brand text-primary">
             <!-- ========   Change your logo from here   ============ -->
-            <!-- <img src="../../assets/dashboard/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo"> -->
+            <!-- <img src="/gohappymart/public/assets/dashboard/images/logo-dark.svg" class="img-fluid logo-lg" alt="logo"> -->
             GoHappyMart
           </a>
         </div>
@@ -208,7 +208,7 @@
           <div class="card text-center">
             <div class="card-body">
               <img
-                src="../../assets/dashboard/images/img-navbar-card.png"
+                src="/gohappymart/public/assets/dashboard/images/img-navbar-card.png"
                 alt="images"
                 class="img-fluid mb-2"
               />
@@ -314,7 +314,7 @@
                       <div class="d-flex">
                         <div class="flex-shrink-0">
                           <img
-                            src="../../assets/dashboard/images/user/avatar-2.jpg"
+                            src="/gohappymart/public/assets/dashboard/images/user/avatar-2.jpg"
                             alt="user-image"
                             class="user-avtar"
                           />
@@ -332,7 +332,7 @@
                       <div class="d-flex">
                         <div class="flex-shrink-0">
                           <img
-                            src="../../assets/dashboard/images/user/avatar-1.jpg"
+                            src="/gohappymart/public/assets/dashboard/images/user/avatar-1.jpg"
                             alt="user-image"
                             class="user-avtar"
                           />
@@ -350,7 +350,7 @@
                       <div class="d-flex">
                         <div class="flex-shrink-0">
                           <img
-                            src="../../assets/dashboard/images/user/avatar-3.jpg"
+                            src="/gohappymart/public/assets/dashboard/images/user/avatar-3.jpg"
                             alt="user-image"
                             class="user-avtar"
                           />
@@ -368,7 +368,7 @@
                       <div class="d-flex">
                         <div class="flex-shrink-0">
                           <img
-                            src="../../assets/dashboard/images/user/avatar-4.jpg"
+                            src="/gohappymart/public/assets/dashboard/images/user/avatar-4.jpg"
                             alt="user-image"
                             class="user-avtar"
                           />
@@ -404,7 +404,7 @@
                 aria-expanded="false"
               >
                 <img
-                  src="../../assets/dashboard/images/user/avatar-2.jpg"
+                  src="/gohappymart/public/assets/dashboard/images/user/avatar-2.jpg"
                   alt="user-image"
                   class="user-avtar"
                 />
@@ -417,7 +417,7 @@
                   <div class="d-flex mb-1">
                     <div class="flex-shrink-0">
                       <img
-                        src="../../assets/dashboard/images/user/avatar-2.jpg"
+                        src="/gohappymart/public/assets/dashboard/images/user/avatar-2.jpg"
                         alt="user-image"
                         class="user-avtar wid-35"
                       />
@@ -984,16 +984,16 @@
     </footer>
 
     <!-- [Page Specific JS] start -->
-    <script src="../../assets/dashboard/js/plugins/apexcharts.min.js"></script>
-    <script src="../../assets/dashboard/js/pages/dashboard-default.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/apexcharts.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/pages/dashboard-default.js"></script>
     <!-- [Page Specific JS] end -->
     <!-- Required Js -->
-    <script src="../../assets/dashboard/js/plugins/popper.min.js"></script>
-    <script src="../../assets/dashboard/js/plugins/simplebar.min.js"></script>
-    <script src="../../assets/dashboard/js/plugins/bootstrap.min.js"></script>
-    <script src="../../assets/dashboard/js/fonts/custom-font.js"></script>
-    <script src="../../assets/dashboard/js/pcoded.js"></script>
-    <script src="../../assets/dashboard/js/plugins/feather.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/popper.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/simplebar.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/bootstrap.min.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/fonts/custom-font.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/pcoded.js"></script>
+    <script src="/gohappymart/public/assets/dashboard/js/plugins/feather.min.js"></script>
 
     <script>
       layout_change("light");

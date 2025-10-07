@@ -8,7 +8,8 @@ class CobaControllers extends Controller{
 
         // echo 'index coba aja';
         // $this->view('dashboard/admin/layouts/header');
-        $this->view('dashboard/admin/index');
+        // $this->view('dashboard/admin/index');
+        $this->view('dashboard/mentahan/elements/icon-phosphor');
         // $this->view('dashboard/admin/layouts/footer');
     }
     public function superadmin()
