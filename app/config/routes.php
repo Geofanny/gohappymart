@@ -6,4 +6,5 @@ return [
     'coba'    => 'CobaControllers',   
     'nyoba'    => 'NyobaController',
     'keranjang' => 'KeranjangController',
+    'tentang' => 'TentangController'
 ];
