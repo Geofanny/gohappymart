@@ -1,7 +1,7 @@
 <?php
 
 return [
-    ''        => 'Home',              
+    ''        => 'BerandaController',              
     'home'    => 'Home',              
     'coba'    => 'CobaControllers',   
     'nyoba'    => 'NyobaController',
