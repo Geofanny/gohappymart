@@ -52,9 +52,9 @@
             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
               <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
                 <li class="nav-item"><a class="nav-link" href="/gohappymart/">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="/gohappymart/produk/">Shop</a></li>
+                <li class="nav-item"><a class="nav-link" href="/gohappymart/admin-produk">Shop</a></li>
                 <li class="nav-item"><a class="nav-link" href="/gohappymart/blog/">Blog</a></li>
-                <li class="nav-item active"><a class="nav-link" href="/gohappymart/users/tentang.php">Tentang</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/gohappymart/tentang">Tentang</a></li>
                 <li class="nav-item"><a class="nav-link" href="/gohappymart/contact/">Contact</a></li>
               </ul>
               <ul class="nav-shop">
