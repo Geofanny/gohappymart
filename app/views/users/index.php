@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Aroma Shop - Home</title>
-	<link rel="icon" href="/gohappymart/public/assets/users/img/Fevicon.png" type="image/png">
+  <title>GO Happy Mart - Home</title>
+	<link rel="icon" href="/gohappymart/public/assets/users/img/Fevicon_gohappymart.jpg" type="image/png">
   <link rel="stylesheet" href="/gohappymart/public/assets/users/vendors/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="/gohappymart/public/assets/users/vendors/fontawesome/css/all.min.css">
 	<link rel="stylesheet" href="/gohappymart/public/assets/users/vendors/themify-icons/themify-icons.css">
@@ -14,6 +14,61 @@
   <link rel="stylesheet" href="/gohappymart/public/assets/users/vendors/owl-carousel/owl.carousel.min.css">
 
   <link rel="stylesheet" href="/gohappymart/public/assets/users/css/style.css">
+  <head>
+  ...
+  <style>
+    /* CSS tombol overlay */
+    .card-product__img {
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .card-product__imgOverlay {
+      position: absolute !important;
+      bottom: 1px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 12px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      list-style: none !important;
+      opacity: 0 !important;
+      transition: opacity 0.3s ease !important;
+      z-index: 10 !important;
+    }
+
+    .card-product__img:hover .card-product__imgOverlay {
+      opacity: 1 !important;
+    }
+
+    .card-product__imgOverlay button {
+      background: #3758f9 !important;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 50% !important;
+      width: 45px !important;
+      height: 45px !important;
+      font-size: 18px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      transition: 0.2s !important;
+    }
+
+    .card-product__imgOverlay button:hover {
+      background: #2d4ae3 !important;
+      transform: scale(1.05) !important;
+    }
+
+    .card-product__imgOverlay button:active {
+      background: #1e34b7 !important;
+      transform: scale(0.95) !important;
+    }
+  </style>
 </head>
 <body>
   <!--================ Start Header Menu Area =================-->
@@ -21,7 +76,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"><img src="/gohappymart/public/assets/users/img/logo.png" alt=""></a>
+          <a class="navbar-brand logo_h" href="index.html"><img src="/gohappymart/public/assets/users/img/logo_gohappymart.jpg" style="height:85px; width:auto alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -87,10 +142,12 @@
           </div>
           <div class="col-sm-7 col-lg-6 offset-lg-1 pl-4 pl-md-5 pl-lg-0">
             <div class="hero-banner__content">
-              <h4>Shop is fun</h4>
-              <h1>Browse Our Premium Product</h1>
-              <p>Us which over of signs divide dominion deep fill bring they're meat beho upon own earth without morning over third. Their male dry. They are great appear whose land fly grass.</p>
-              <a class="button button-hero" href="#">Browse Now</a>
+              <h5 class="mb-2" style="opacity: 0.9;">💧 Bersih, Cepat, dan Praktis!</h5>
+              <h1 style="font-weight: 800; line-height: 1.2; color: #87cefa;">
+                Belanja <span style="color:#00008b; text-shadow: 2px 2px 4px rgba(100,150,255,0.4);">Perlengkapan Laundry</span><br>Jadi Lebih Mudah
+              </h1>
+              <p>Dapatkan semua perlengkapan laundry terbaik tanpa ribet — tinggal klik, langsung bersih.</p>
+              <a class="button button-hero" href="category.php">Lihat Produk</a>
             </div>
           </div>
         </div>
@@ -98,431 +155,393 @@
     </section>
     <!--================ Hero banner start =================-->
 
-    <!--================ Hero Carousel start =================-->
-    <section class="section-margin mt-0">
-      <div class="owl-carousel owl-theme hero-carousel">
-        <div class="hero-carousel__slide">
-          <img src="/gohappymart/public/assets/users/img/home/hero-slide1.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
-            <h3>Wireless Headphone</h3>
-            <p>Accessories Item</p>
-          </a>
+    <!--================ Category Section Start =================-->
+    <section class="section-margin mt-0" style="background-color: #fbfeffff; padding: 60px 0;">
+      <div class="container">
+        
+        <div class="section-intro pb-4">
+          <h2 class="mb-4" style="font-size:26px; font-weight:700; color:#333;">Kategori</h2>
         </div>
-        <div class="hero-carousel__slide">
-          <img src="/gohappymart/public/assets/users/img/home/hero-slide2.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
-            <h3>Wireless Headphone</h3>
-            <p>Accessories Item</p>
-          </a>
-        </div>
-        <div class="hero-carousel__slide">
-          <img src="/gohappymart/public/assets/users/img/home/hero-slide3.png" alt="" class="img-fluid">
-          <a href="#" class="hero-carousel__slideOverlay">
-            <h3>Wireless Headphone</h3>
-            <p>Accessories Item</p>
-          </a>
+
+        <div class="row text-center justify-content-center">
+          <?php
+            require_once __DIR__ . '/../../config/database.php';
+            $db = new Database();
+            $db->query("SELECT * FROM kategori ORDER BY nama_kategori ASC");
+            $db->execute();
+            $kategori = $db->resultObject();
+          ?>
+
+          <?php if (!empty($kategori)): ?>
+            <?php foreach ($kategori as $kat): ?>
+              <div class="col-4 col-sm-3 col-md-2 mb-4">
+                <div class="category-item">
+                  <a href="category.php" style="text-decoration:none;">
+                    <div class="category-icon" 
+                      style="width:85px; height:85px; background:white; border-radius:50%; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.05); margin:0 auto;">
+                        <img src="/gohappymart/public/assets/users/img/<?php echo htmlspecialchars($kat->img ?? 'default.png'); ?>" 
+                          alt="<?php echo htmlspecialchars($kat->nama_kategori); ?>" 
+                          style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <p class="category-name mt-2 mb-0" 
+                      style="font-size:13px; color:#333; font-weight:500;">
+                      <?php echo htmlspecialchars($kat->nama_kategori); ?>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <div class="col-12 text-center">
+              <p>Belum ada kategori tersedia.</p>
+            </div>
+          <?php endif; ?>
         </div>
       </div>
     </section>
-    <!--================ Hero Carousel end =================-->
+
+    <!--================ Category Section End =================-->
+
 
     <!-- ================ trending product section start ================= -->  
     <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
-          <h2>Trending <span class="section-intro__style">Product</span></h2>
+          <p>Produk Ter Populer Go Happy Mart</p>
+          <h2>Produk <span class="section-intro__style">Populer💕</span></h2>
         </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="/gohappymart/public/assets/users/img/product/product1.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
+
+        <div class="row justify-content-start g-4">
+          <?php
+            require_once __DIR__ . '/../../config/database.php';
+            $db = new Database();
+
+            $db->query("
+              SELECT 
+                p.*, 
+                k.nama_kategori,
+                SUM(d.jumlah) AS total_terjual
+              FROM produk p
+              JOIN pesanan_produk d ON p.id_produk = d.id_produk
+              LEFT JOIN kategori k ON p.id_kategori = k.id_kategori
+              WHERE p.status = 'aktif'
+              GROUP BY p.id_produk
+              HAVING total_terjual > 0
+              ORDER BY total_terjual DESC
+              LIMIT 8
+            ");
+            $db->execute();
+            $produk_populer = $db->resultObject();
+          ?>
+
+          <?php if (!empty($produk_populer)): ?>
+            <?php foreach ($produk_populer as $p): ?>
+              <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+                <div class="card text-center card-product" style="border:none; box-shadow:none; border-radius:0px; overflow:hidden; background:#fff; height: 370px;">
+                  <div class="card-product__img position-relative" 
+                    style="border:none; box-shadow:none; background:none;">
+                    <img 
+                      src="/gohappymart/public/assets/users/img/<?php echo $p->gambar; ?>" 
+                      alt="<?php echo $p->nama_produk; ?>" 
+                      class="img-fluid"
+                      style="height: 250px; object-fit: cover; width: 100%; border:none; outline:none; box-shadow:none;"
+                    >
+                    <ul class="card-product__imgOverlay">
+                      <li><button class="icon_btn"><i class="ti-search"></i></button></li>
+                      <li><button class="icon_btn"><i class="ti-shopping-cart"></i></button></li>
+                      <li><button class="icon_btn"><i class="ti-heart"></i></button></li>
+                    </ul>
+                  </div>
+                  <div class="card-body" style="padding-top: 8px; padding-bottom: 8px; line-height: 1.1;">
+                    <p class="text-muted mb-1" style="margin: 10px 0 0 0; font-size: 14px;">
+                      <?php echo $p->nama_kategori; ?>
+                    </p>
+                    <h4 class="card-product__title" style="font-size: 18px; margin: 4px 0 2px 0; line-height: 1.3;">
+                      <a href="single-product.php" style="text-decoration:none;">
+                        <?php echo $p->nama_produk; ?>
+                      </a>
+                    </h4>
+                    <br>
+                    <p class="card-product__price" style="margin-top: 2px; font-size: 15px; line-height: 1.2;">
+                      <strong>Rp <?php echo number_format($p->harga, 0, ',', '.'); ?></strong>
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <p>Accessories</p>
-                <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="/gohappymart/public/assets/users/img/product/product2.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Beauty</p>
-                <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="/gohappymart/public/assets/users/img/product/product3.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Decor</p>
-                <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="/gohappymart/public/assets/users/img/product/product4.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Decor</p>
-                <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="/gohappymart/public/assets/users/img/product/product5.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Accessories</p>
-                <h4 class="card-product__title"><a href="single-product.html">Man Office Bag</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="/gohappymart/public/assets/users/img/product/product6.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Kids Toy</p>
-                <h4 class="card-product__title"><a href="single-product.html">Charging Car</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="/gohappymart/public/assets/users/img/product/product7.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Accessories</p>
-                <h4 class="card-product__title"><a href="single-product.html">Blutooth Speaker</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div> 
-            </div>
-          </div>
-          <div class="col-md-6 col-lg-4 col-xl-3">
-            <div class="card text-center card-product">
-              <div class="card-product__img">
-                <img class="card-img" src="/gohappymart/public/assets/users/img/product/product8.png" alt="">
-                <ul class="card-product__imgOverlay">
-                  <li><button><i class="ti-search"></i></button></li>
-                  <li><button><i class="ti-shopping-cart"></i></button></li>
-                  <li><button><i class="ti-heart"></i></button></li>
-                </ul>
-              </div>
-              <div class="card-body">
-                <p>Kids Toy</p>
-                <h4 class="card-product__title"><a href="#">Charging Car</a></h4>
-                <p class="card-product__price">$150.00</p>
-              </div>
-            </div>
-          </div>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </div>
       </div>
     </section>
     <!-- ================ trending product section end ================= -->  
 
 
-    <!-- ================ offer section start ================= --> 
-    <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">
+    <!-- ================ Berita Start ================= -->
+     <section class="section-margin calc-60px" style="background-color: #e9f3ff; padding: 60px 0;">
       <div class="container">
+        <div class="section-intro pb-60px text-center berita-intro">
+          <p>Kabar Terbaru Dari GoHappyMart</p>
+          <h2>Berita <span class="section-intro__style">Terkini</span></h2>
+        </div>
+
+
+        <?php
+          require_once __DIR__ . '/../../config/database.php';
+          $db = new Database();
+
+          $db->query("
+            SELECT 
+              b.id_berita,
+              b.judul,
+              b.isi,
+              b.tanggal_publikasi,
+              u.nama_user
+            FROM berita b
+            LEFT JOIN users u ON b.id_user = u.id_user
+            WHERE b.status = 'publish'
+            ORDER BY b.tanggal_publikasi DESC
+            LIMIT 3
+          ");
+          $db->execute();
+          $berita = $db->resultObject();
+        ?>
+
         <div class="row">
-          <div class="col-xl-5">
-            <div class="offer__content text-center">
-              <h3>Up To 50% Off</h3>
-              <h4>Winter Sale</h4>
-              <p>Him she'd let them sixth saw light</p>
-              <a class="button button--active mt-3 mt-xl-4" href="#">Shop Now</a>
+          <?php if (!empty($berita)): ?>
+            <?php foreach ($berita as $news): ?>
+              <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card border-0 shadow-sm" 
+                    style="border-radius:10px; overflow:hidden; background-color: #fff;">
+              
+                    <!-- 🖼️ Gambar Berita -->
+                    <img 
+                      src="/gohappymart/public/assets/users/img/default-news.jpg" 
+                      alt="<?= htmlspecialchars($news->judul) ?>" 
+                      style="width:100%; height:220px; object-fit:cover;"
+                    >
+
+                    <div class="card-body" style="padding: 20px;">
+                      <div class="d-flex mb-2" style="font-size: 14px; color: #777;">
+                        <span>By <?= htmlspecialchars($news->nama_user ?? 'Admin') ?></span>
+                      </div>
+
+                      <!-- 📰 Judul -->
+                      <h5 class="card-title" style="font-weight:bold; color:#222;">
+                        <?= htmlspecialchars($news->judul) ?>
+                      </h5>
+
+                      <!-- ✏️ Isi Singkat -->
+                      <p class="card-text" style="color:#555;">
+                        <?php
+                          $words = explode(' ', strip_tags($news->isi));
+                          echo implode(' ', array_slice($words, 0, 20)) . (count($words) > 20 ? '...' : '');
+                        ?>
+                      </p>
+
+                      <!-- 🔗 Read More -->
+                      <a href="single-blog.php?id=<?= $news->id_berita ?>" 
+                        class="text-primary" style="text-decoration:none;">
+                        Read More →
+                      </a>
+                  </div>
+                </div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <div class="col-12 text-center">
+              <p>Belum ada berita yang dipublikasikan.</p>
             </div>
-          </div>
+          <?php endif; ?>
         </div>
       </div>
     </section>
-    <!-- ================ offer section end ================= --> 
+    <!-- ================ Berita end ================= --> 
 
-    <!-- ================ Best Selling item  carousel ================= --> 
+    <!-- ================ Promo Produk Start ================= --> 
     <section class="section-margin calc-60px">
       <div class="container">
         <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
-          <h2>Best <span class="section-intro__style">Sellers</span></h2>
+          <p>Promo Produk</p>
+          <h2>Best <span class="section-intro__style">Promo🔥</span></h2>
         </div>
-        <div class="owl-carousel owl-theme" id="bestSellerCarousel">
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="/gohappymart/public/assets/users/img/product/product1.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="/gohappymart/public/assets/users/img/product/product2.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Beauty</p>
-              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
+        <?php
+          require_once __DIR__ . '/../../config/database.php';
+          $db = new Database();
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="/gohappymart/public/assets/users/img/product/product3.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
+          $db->query("
+            SELECT DISTINCT 
+              pr.id_promo,
+              pr.nama_promo,
+              pr.tipe,
+              pr.nilai_diskon,
+              pr.tanggal_mulai,
+              pr.tanggal_selesai,
+              p.id_produk,
+              p.nama_produk,
+              p.harga,
+              p.gambar,
+              k.nama_kategori
+            FROM promo pr
+            JOIN promo_produk pp ON pr.id_promo = pp.id_promo
+            JOIN produk p ON pp.id_produk = p.id_produk
+            LEFT JOIN kategori k ON p.id_kategori = k.id_kategori
+            WHERE pr.status = 'aktif'
+          ");
+          $db->execute();
+          $promo_produk = $db->resultObject();
+        ?>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="/gohappymart/public/assets/users/img/product/product4.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
+        <div class="row justify-content-start g-4">
+          <?php foreach ($promo_produk as $row): 
+            // Hitung harga setelah diskon
+            $harga_asli = (float)$row->harga;
+            $nilai_diskon = (float)$row->nilai_diskon;
+            $tipe = strtolower(trim($row->tipe));
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="/gohappymart/public/assets/users/img/product/product1.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Accessories</p>
-              <h4 class="card-product__title"><a href="single-product.html">Quartz Belt Watch</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
+              if ($tipe === 'persentase') {
+                $harga_diskon = $harga_asli - ($harga_asli * $nilai_diskon / 100);
+              } elseif ($tipe === 'nominal') {
+                $harga_diskon = $harga_asli - $nilai_diskon;
+              } else {
+                $harga_diskon = $harga_asli; // fallback kalo tipe gak dikenali
+              }
+          ?>
+          <div class="col-6 col-md-4 col-lg-3 d-flex align-items-stretch">
+            <div class="card text-center card-product" style="border:none; box-shadow:none; border-radius:0px; overflow:hidden; background:#fff; height: 375px;">
+              <div class="card-product__img position-relative" 
+                style="border:none; box-shadow:none; background:none;">
+                  <img
+                    src="/gohappymart/public/assets/users/img/<?php echo $row->gambar; ?>"
+                      alt="<?php echo $row->nama_produk; ?>"
+                      class="img-fluid"
+                      style="height: 250px; object-fit: cover; width: 100%; border:none; outline:none; box-shadow:none;"
+                    >
+                    <ul class="card-product__imgOverlay">
+                      <li><button class="icon_btn"><i class="ti-search"></i></button></li>
+                      <li><button class="icon_btn"><i class="ti-shopping-cart"></i></button></li>
+                      <li><button class="icon_btn"><i class="ti-heart"></i></button></li>
+                    </ul>
+              </div>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="/gohappymart/public/assets/users/img/product/product2.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Beauty</p>
-              <h4 class="card-product__title"><a href="single-product.html">Women Freshwash</a></h4>
-              <p class="card-product__price">$150.00</p>
+                <div class="card-body" style="padding-top: 8px; padding-bottom: 8px; line-height: 1.1;">
+                    <p class="text-muted mb-1" style="margin: 10px 0 0 0; font-size: 14px;">
+                      <?php echo $row->nama_kategori; ?>
+                    </p>
+                    <h4 class="card-product__title" style="font-size: 18px; margin: 4px 0 2px 0; line-height: 1.3;">
+                      <a href="single-product.php" style="text-decoration:none;">
+                        <?php echo $row->nama_produk; ?>
+                      </a>
+                    </h4>
+                    <br>
+                    <span style="text-decoration: line-through; color: #888; line-height: 1.2;">
+                      Rp <?php echo number_format($row->harga, 0, ',', '.') ?>
+                    </span>
+                    <p class="card-product__price" style="color:#d90429; font-weight:bold;">
+                      Rp <?php echo number_format(max($harga_diskon, 0), 0, ',', '.') ?>
+                    </p>
+                </div>
             </div>
           </div>
+          <?php endforeach; ?>
 
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="/gohappymart/public/assets/users/img/product/product3.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
-
-          <div class="card text-center card-product">
-            <div class="card-product__img">
-              <img class="img-fluid" src="/gohappymart/public/assets/users/img/product/product4.png" alt="">
-              <ul class="card-product__imgOverlay">
-                <li><button><i class="ti-search"></i></button></li>
-                <li><button><i class="ti-shopping-cart"></i></button></li>
-                <li><button><i class="ti-heart"></i></button></li>
-              </ul>
-            </div>
-            <div class="card-body">
-              <p>Decor</p>
-              <h4 class="card-product__title"><a href="single-product.html">Room Flash Light</a></h4>
-              <p class="card-product__price">$150.00</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
-    <!-- ================ Best Selling item  carousel end ================= --> 
+    <!-- ================ Promo Produk end ================= --> 
 
-    <!-- ================ Blog section start ================= -->  
-    <section class="blog">
+    <!-- ================ Testimoni Start ================= --> 
+    <section class="testimoni section-margin">
       <div class="container">
-        <div class="section-intro pb-60px">
-          <p>Popular Item in the market</p>
-          <h2>Latest <span class="section-intro__style">News</span></h2>
+        <div class="section-intro pb-60px text-center">
+          <p>Apa Kata Mereka</p>
+          <h2>Testimoni <span class="section-intro__style">Pelanggan</span></h2>
         </div>
 
         <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="/gohappymart/public/assets/users/img/blog/blog1.png" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
-                </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">The Richland Center Shooping News and weekly shooper</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
+          <?php
+            require_once __DIR__ . '/../../config/database.php';
+            $db = new Database();
 
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="/gohappymart/public/assets/users/img/blog/blog2.png" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
-                </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">The Shopping News also offers top-quality printing services</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
+            $db->query("
+              SELECT 
+                t.id_testimoni,
+                t.rating,
+                t.komentar,
+                t.tanggal_testimoni,
+                p.nama_produk,
+                p.gambar,
+                pl.nama_pelanggan
+              FROM testimoni t
+              LEFT JOIN pesanan_produk pp ON t.id_pesanan_produk = pp.id_pesanan_produk
+              LEFT JOIN pesanan ps ON pp.id_pesanan = ps.id_pesanan
+              LEFT JOIN pelanggan pl ON ps.id_pelanggan = pl.id_pelanggan
+              LEFT JOIN produk p ON pp.id_produk = p.id_produk
+              ORDER BY t.tanggal_testimoni DESC
+              LIMIT 3
+            ");
 
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-            <div class="card card-blog">
-              <div class="card-blog__img">
-                <img class="card-img rounded-0" src="/gohappymart/public/assets/users/img/blog/blog3.png" alt="">
-              </div>
-              <div class="card-body">
-                <ul class="card-blog__info">
-                  <li><a href="#">By Admin</a></li>
-                  <li><a href="#"><i class="ti-comments-smiley"></i> 2 Comments</a></li>
-                </ul>
-                <h4 class="card-blog__title"><a href="single-blog.html">Professional design staff and efficient equipment you’ll find we offer</a></h4>
-                <p>Let one fifth i bring fly to divided face for bearing divide unto seed. Winged divided light Forth.</p>
-                <a class="card-blog__link" href="#">Read More <i class="ti-arrow-right"></i></a>
+            $db->execute();
+            $testimoni = $db->resultObject();
+          ?>
+
+          <?php if (!empty($testimoni)): ?>
+            <?php foreach ($testimoni as $row): ?>
+              <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                <div class="card card-blog" style="padding: 20px; border: 1px solid #eee; border-radius: 15px;">
+                  <div class="card-body text-center" style="margin: 0 auto 15px auto;">
+
+                  <?php if (!empty($row->gambar)): ?>
+                    <img src="/gohappymart/public/assets/users/img/<?= $row->gambar ?>" alt="<?= $row->nama_produk ?>" 
+                      style="width:150px; height:200px; object-fit: cover; border-radius: 20px;">
+                    <?php endif; ?>
+
+
+                  <!-- ⭐ Bagian Rating -->
+                  <div class="mb-3" style="margin-top: 15px;">
+                    <?php 
+                      $maxStars = 5;
+                      for ($i = 1; $i <= $maxStars; $i++): 
+                        if ($i <= $row->rating): ?>
+                          <i class="ti-star" style="color: #FFD700;"></i>
+                        <?php else: ?>
+                          <i class="ti-star" style="color: #ccc;"></i>
+                        <?php endif;
+                      endfor;
+                    ?>
+                  </div>
+
+                  <!-- 💬 Pelanggan -->
+                  <p style="margin-top: 8px; font-weight: 600; color: #333;">
+                    — <?= htmlspecialchars($row->nama_pelanggan) ?>
+                  </p>
+
+
+                  <!-- 🛍️ Nama Produk -->
+                  <p style="font-style: italic; color: #555;">“<?= htmlspecialchars($row->komentar) ?>”</p>
+                    <p class="mt-3 mb-0" style="font-weight: bold; color: #222;">
+                      <?= htmlspecialchars($row->nama_produk ?? 'Produk Tidak Diketahui') ?>
+                    </p>
+
+
+                  <small class="text-muted">
+                    <?= date('d M Y', strtotime($row->tanggal_testimoni)) ?>
+                  </small>
+
+                </div>
               </div>
             </div>
+          <?php endforeach; ?>
+        <?php else: ?>
+          <div class="col-12 text-center">
+            <p>Belum ada testimoni pelanggan.</p>
           </div>
+        <?php endif; ?>
+
         </div>
       </div>
     </section>
-    <!-- ================ Blog section end ================= -->  
-
-    <!-- ================ Subscribe section start ================= --> 
-    <section class="subscribe-position">
-      <div class="container">
-        <div class="subscribe text-center">
-          <h3 class="subscribe__title">Get Update From Anywhere</h3>
-          <p>Bearing Void gathering light light his eavening unto dont afraid</p>
-          <div id="mc_embed_signup">
-            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
-              <div class="form-group ml-sm-auto">
-                <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
-                <div class="info"></div>
-              </div>
-              <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
-              <div style="position: absolute; left: -5000px;">
-                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-              </div>
-
-            </form>
-          </div>
-          
-        </div>
-      </div>
-    </section>
-    <!-- ================ Subscribe section end ================= --> 
-
-    
+    <!--================ Testimoni End  =================-->
 
   </main>
 
@@ -534,13 +553,12 @@
 				<div class="row section_gap">
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title large_title">Our Mission</h4>
+							<h4 class="footer_title large_title">Tentang Kami</h4>
 							<p>
-								So seed seed green that winged cattle in. Gathering thing made fly you're no 
-								divided deep moved us lan Gathering thing us land years living.
+								GoHappyMart menyediakan berbagai perlengkapan laundry berkualitas — mulai dari detergen, pewangi, hingga plastik laundry.
 							</p>
 							<p>
-								So seed seed green that winged cattle in. Gathering thing made fly you're no divided deep moved 
+								Cocok untuk bisnis laundry maupun pemakaian pribadi di rumah, karena wangi dan kebersihannya tahan lama! 
 							</p>
 						</div>
 					</div>
@@ -548,12 +566,11 @@
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Quick Links</h4>
 							<ul class="list">
-								<li><a href="#">Home</a></li>
-								<li><a href="#">Shop</a></li>
-								<li><a href="#">Blog</a></li>
-								<li><a href="#">Product</a></li>
-								<li><a href="#">Brand</a></li>
-								<li><a href="#">Contact</a></li>
+								<li><a href="index.php">Home</a></li>
+								<li><a href="keranjang.php">Shop</a></li>
+								<li><a href="blog.php">Blog</a></li>
+								<li><a href="category.php">Product</a></li>
+								<li><a href="contact.php">Contact</a></li>
 							</ul>
 						</div>
 					</div>
@@ -561,12 +578,29 @@
 						<div class="single-footer-widget instafeed">
 							<h4 class="footer_title">Gallery</h4>
 							<ul class="list instafeed d-flex flex-wrap">
-								<li><img src="/gohappymart/public/assets/users/img/gallery/r1.jpg" alt=""></li>
-								<li><img src="/gohappymart/public/assets/users/img/gallery/r2.jpg" alt=""></li>
-								<li><img src="/gohappymart/public/assets/users/img/gallery/r3.jpg" alt=""></li>
-								<li><img src="/gohappymart/public/assets/users/img/gallery/r5.jpg" alt=""></li>
-								<li><img src="/gohappymart/public/assets/users/img/gallery/r7.jpg" alt=""></li>
-								<li><img src="/gohappymart/public/assets/users/img/gallery/r8.jpg" alt=""></li>
+
+              <?php
+                require_once __DIR__ . '/../../config/database.php';
+                $db = new Database();
+
+                // Ambil beberapa gambar produk secara acak
+                $db->query("SELECT nama_produk, gambar FROM produk WHERE gambar IS NOT NULL AND gambar != '' LIMIT 6");
+                $db->execute();
+                $galeri = $db->resultObject();
+              ?>
+
+                <?php if (!empty($galeri)): ?>
+                  <?php foreach ($galeri as $row): ?>
+                    <li>
+                      <img 
+                        src="/gohappymart/public/assets/users/img/<?= htmlspecialchars($row->gambar) ?>" 
+                        alt="<?= htmlspecialchars($row->nama_produk) ?>" 
+                        style="width:70px; height:70px; object-fit:cover; margin:2px;">
+                      </li>
+                  <?php endforeach; ?>
+                  <?php else: ?>
+                    <li><p>Tidak ada gambar.</p></li>
+                <?php endif; ?>
 							</ul>
 						</div>
 					</div>
@@ -609,8 +643,8 @@
 				<div class="row d-flex">
 					<p class="col-lg-12 footer-text text-center">
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by Kelompok 2</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 				</div>
 			</div>
 		</div>

@@ -32,7 +32,7 @@ $(function() {
   });
 
   //------- Best Seller Carousel -------//
-  if($('.owl-carousel').length > 0){
+if($('.owl-carousel').length > 0){
     $('#bestSellerCarousel').owlCarousel({
       loop:true,
       margin:30,
@@ -55,6 +55,27 @@ $(function() {
       }
     })
   }
+
+  //------- Promo Carousel -------//
+  if($('.owl-carousel').length > 0){
+    $('#promoCarousel').owlCarousel({
+      items: 4,
+      loop: true,
+      margin: 20,
+      autoplay: true,
+      autoplayTimeout: 2500,
+      autoplayHoverPause: true,
+      dots: false,
+      nav: true,
+      navText: ["<i class='ti-angle-left'></i>", "<i class='ti-angle-right'></i>"],
+      responsive: {
+        0: { items: 1 },
+        600: { items: 2 },
+        1000: { items: 4 }
+      }
+    })
+  }
+
 
   //------- single product area carousel -------//
   $(".s_Product_carousel").owlCarousel({
