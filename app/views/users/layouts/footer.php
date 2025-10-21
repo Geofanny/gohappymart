@@ -16,9 +16,9 @@
               <h4 class="footer_title mb-3">Tautan Cepat</h4>
               <ul class="list-unstyled" style="font-size: 14px; line-height: 1.8;">
                 <li><a href="/gohappymart/" style="color: #fff;">Home</a></li>
-                <li><a href="/gohappymart/produk/" style="color: #fff;">Shop</a></li>
+                <li><a href="/gohappymart/admin-produk" style="color: #fff;">Shop</a></li>
                 <li><a href="/gohappymart/blog/" style="color: #fff;">Blog</a></li>
-                <li><a href="/gohappymart/users/tentang.php" style="color: #fff;">Tentang</a></li>
+                <li><a href="/gohappymart/tentang" style="color: #fff;">Tentang</a></li>
                 <li><a href="/gohappymart/contact/" style="color: #fff;">Contact</a></li>
               </ul>
             </div>

@@ -15,4 +15,6 @@ return [
     'admin-produk/update'       => 'AdminProductController@update',
     'admin-produk/delete'       => 'AdminProductController@delete',
     'admin-produk/show'         => 'AdminProductController@show',
+    'admin-produk/storeCategory'  => 'AdminProductController@storeCategory',
+    'admin-produk/deleteCategory' => 'AdminProductController@deleteCategory',
 ];
