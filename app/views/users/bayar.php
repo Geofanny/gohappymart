@@ -203,6 +203,7 @@
     </section>
     <!-- ================ end banner area ================= -->
 
+
     <!--================Cart Area =================-->
     <section class="cart_area">
       <div class="container">
@@ -220,9 +221,7 @@
             >
           </div>
 
-          <textarea id="addressField" class="form-control" rows="3" readonly>
-Jl. Mawar No. 123, Kel. Sukamaju, Kec. Cipayung, Jakarta Timur, DKI Jakarta - 13870
-      </textarea
+          <textarea id="addressField" class="form-control" rows="3" readonly><?= $data['pelanggan']->alamat; ?></textarea
           >
         </div>
 
@@ -326,6 +325,102 @@ Jl. Mawar No. 123, Kel. Sukamaju, Kec. Cipayung, Jakarta Timur, DKI Jakarta - 13
           </div>
         </div>
       </div>
+
+<!-- 🏠 Alamat Pengiriman -->
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h5 class="card-title mb-3">Alamat Pengiriman</h5>
+    <form id="alamatForm">
+      <div class="mb-3">
+        <label for="alamatbaru" class="form-label">Alamat Lengkap</label>
+        <textarea class="form-control" id="alamatbaru" rows="2" placeholder="Jl. Contoh No.1" required></textarea>
+      </div>
+
+      <div class="row">
+  <div class="col-md-6 mb-3">
+    <label for="provinsi" class="form-label">Provinsi</label>
+    <select class="form-control custom-select" id="provinsiSelect" required>
+    <option value="">-- Pilih Provinsi --</option>
+    </select>
+  </div>
+  <div class="col-md-6 mb-3">
+    <label for="kota" class="form-label">Kota</label>
+    <select class="form-control custom-select" id="kotaSelect" required>
+      <option value="">-- Pilih Kota --</option>
+    </select>
+  </div>
+</div>
+
+<style>
+  /* Styling agar select sama tinggi dengan input text */
+  .custom-select {
+    display: block;
+    width: 100%;
+    height: 40px; /* sama dengan default input text Bootstrap 4 */
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .custom-select:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+  }
+
+  /* Label selalu di atas */
+  .form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  .nice-select .list {
+    -webkit-overflow-scrolling: touch; /* buat smooth scroll di iOS */
+}
+/* Batasi tinggi dropdown dan tambahkan scroll */
+.nice-select .list {
+  width: 100%;
+    max-height: 200px; /* Atur sesuai kebutuhan */
+    overflow-y: auto;
+}
+
+</style>
+
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="kelurahan" class="form-label">Kelurahan</label>
+          <input type="text" class="form-control" id="kelurahan" placeholder="Masukkan kelurahan" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="kecamatan" class="form-label">Kecamatan</label>
+          <input type="text" class="form-control" id="kecamatan" placeholder="Masukkan kecamatan" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="kodepos" class="form-label">Kode Pos</label>
+          <input type="text" class="form-control" id="kodepos" placeholder="Masukkan kode pos" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="no_hp" class="form-label">No HP</label>
+          <input type="text" class="form-control" id="no_hp" placeholder="Masukkan nomor HP" required>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+
 
       <!-- 📦 Metode Pengiriman -->
 <div class="mb-3">
@@ -719,5 +814,76 @@ Jl. Mawar No. 123, Kel. Sukamaju, Kec. Cipayung, Jakarta Timur, DKI Jakarta - 13
     <script src="/gohappymart/public/assets/users/vendors/jquery.ajaxchimp.min.js"></script>
     <script src="/gohappymart/public/assets/users/vendors/mail-script.js"></script>
     <script src="/gohappymart/public/assets/users/js/main.js"></script>
+    <script>
+      async function getProvinces() {
+        try {
+          const response = await fetch("http://localhost/gohappymart/keranjang/getProvinces");
+          const data = await response.json();
+
+          // console.log("Data API:", data.data);
+
+          const provinsiSelect = document.getElementById("provinsiSelect");
+          provinsiSelect.innerHTML = '<option value="">-- Pilih Provinsi --</option>';
+
+          // Tambahkan opsi dari API
+          data.data.forEach(prov => {
+            const option = document.createElement("option");
+            option.value = prov.id; 
+            option.text = prov.name;
+            provinsiSelect.appendChild(option);
+          });
+
+          // Update nice-select agar tampil opsi baru
+          $('#provinsiSelect').niceSelect('update');
+
+        } catch (err) {
+          console.error("Error:", err);
+        }
+      }
+
+      // Jalankan saat halaman selesai load
+      $(document).ready(function() {
+        getProvinces();
+
+        // Inisialisasi nice-select (buat semua select yang pakai nice-select)
+        $('#provinsiSelect').niceSelect('update');
+      });
+    </script>
+   <script>
+    document.getElementById('provinsiSelect').addEventListener('change', async function() {
+    const provinceId = this.value;
+    const kotaSelect = document.getElementById('kotaSelect');
+    kotaSelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
+
+    if (!provinceId) return;
+
+    try {
+        const formData = new FormData();
+        formData.append('province', provinceId);
+
+        const response = await fetch('http://localhost/gohappymart/keranjang/getCities', {
+            method: 'POST',
+            body: formData
+        });
+
+        const data = await response.json();
+
+        data.data.forEach(kota => {
+            const option = document.createElement('option');
+            option.value = kota.id;
+            option.text = kota.name;
+            kotaSelect.appendChild(option);
+        });
+
+        // update nice-select
+        $('#kotaSelect').niceSelect('update');
+
+    } catch (err) {
+        console.error('Error:', err);
+    }
+});
+
+   </script>
+
   </body>
 </html>
