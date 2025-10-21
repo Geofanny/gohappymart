@@ -5,8 +5,8 @@ return [
     'home'    => 'Home',              
     'coba'    => 'CobaControllers',   
     'nyoba'    => 'NyobaController',
-    'keranjang' => 'KeranjangControl,
-    'login' => 'AuthController'
+    'keranjang' => 'KeranjangControl',
+    'login' => 'AuthController',
     'bantuan' => 'BantuanController',
     'tentang' => 'TentangController',
     'akun'      => 'AkunController',
