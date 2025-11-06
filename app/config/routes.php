@@ -19,4 +19,5 @@ return [
     'admin-produk/show'         => 'AdminProductController@show',
     'admin-produk/storeCategory'  => 'AdminProductController@storeCategory',
     'admin-produk/deleteCategory' => 'AdminProductController@deleteCategory',
+    'tracking' => 'Tracking',
 ];
