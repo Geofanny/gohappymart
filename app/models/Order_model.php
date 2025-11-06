@@ -1,4 +1,5 @@
 <?php
+
 class Order_model
 {
     private $db;
@@ -14,6 +15,15 @@ class Order_model
         $this->db->query($query);
         $this->db->bind("s", $kode);
         $this->db->execute();
-        return $this->db->singleObject(); // hasil object
+        return $this->db->singleObject(); // hasil berupa object
+    }
+
+        // Tambahan: ambil semua data pesanan untuk halaman admin
+    public function getAllOrders()
+    {
+        $query = "SELECT * FROM orders ORDER BY created_at DESC";
+        $this->db->query($query);
+        $this->db->execute();
+        return $this->db->resultObject(); // biar hasilnya konsisten (object)
     }
 }

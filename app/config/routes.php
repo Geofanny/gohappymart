@@ -20,4 +20,5 @@ return [
     'admin-produk/storeCategory'  => 'AdminProductController@storeCategory',
     'admin-produk/deleteCategory' => 'AdminProductController@deleteCategory',
     'tracking' => 'Tracking',
+    'admin-pesanan' => 'AdminOrderController',
 ];
