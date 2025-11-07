@@ -21,4 +21,7 @@ return [
     'admin-produk/deleteCategory' => 'AdminProductController@deleteCategory',
     'tracking' => 'Tracking',
     'admin-pesanan' => 'AdminOrderController',
+    'contact' => 'ContactController',
+    'contact/kirim' => 'ContactController@kirim',
+
 ];
