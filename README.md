@@ -1,13 +1,113 @@
-# gohappymart
+# Go Happy Mart --- UMKM E-Commerce Platform
 
-# Prosedur Ngoding
-# 1. buka views lalu buat folder atau file baru
-# 2. daftarkan file/folder di controllers
-# 3. daftarkan ke controller ke routes nya
-# 4. buat logika query di model
-# 5. Contoh ada di file coba.php , tambah.php, detail.php, edit.php
-# 6. contoh controllers pada file NyobaController.php
-# 7. contoh models pada file Coba.php di folder models
-# 8. contoh routes nya yang nyoba
-# 9. css, js , img atau assets lain ada di folder public
-# 10. file gohappymart.sql silahkan di export di db kalian udah dibuat relasinya
+Go Happy Mart adalah aplikasi **E-Commerce UMKM** berbasis **Laravel
+11** yang dirancang untuk membantu pelaku UMKM dalam mengelola penjualan
+secara digital. Aplikasi ini memudahkan pengelolaan produk, stok,
+transaksi, serta pembayaran online (Midtrans), sehingga UMKM dapat
+menjalankan bisnis secara lebih efektif dan profesional.
+
+## 🚀 Features
+
+-   Manajemen Produk & Kategori
+-   Manajemen Stok & Laporan
+-   Checkout & Pembayaran Midtrans (Snap)
+-   Manajemen Pesanan & Status
+-   Dashboard Admin
+-   Sistem Penilaian Pesanan
+-   Antarmuka modern & responsive
+
+## 📁 Project Structure & Coding Workflow
+
+1.  **Views** → `resources/views/`
+2.  **Controllers** → daftar & hubungkan view
+3.  **Routes** → `routes/web.php`
+4.  **Models** → query dan proses database
+5.  **Contoh Berkas**
+    -   Views: `coba.php`, `tambah.php`, `detail.php`, `edit.php`
+    -   Controller: `NyobaController.php`
+    -   Model: `Coba.php`
+6.  **Assets** → `public/`
+7.  **Database** → `gohappymart.sql` (sudah lengkap relasi)
+
+## 📦 Installation
+
+### 1. Clone Repository
+
+``` bash
+git clone https://github.com/Geofanny/gohappymart.git
+cd gohappymart
+```
+
+### 2. Install Dependencies
+
+``` bash
+composer install
+```
+
+### 3. Copy Environment File
+
+``` bash
+cp .env.example .env
+```
+
+### 4. Generate App Key
+
+``` bash
+php artisan key:generate
+```
+
+### 5. Migrate & Seed Database
+
+``` bash
+php artisan migrate
+php artisan db:seed
+```
+
+### 6. Run Server
+
+``` bash
+php artisan serve
+```
+
+## ⚙️ Environment (.env)
+
+    APP_NAME=gohappymart
+    APP_ENV=local
+    APP_KEY=base64:xxxxxxxxxxxxxxxx
+    APP_DEBUG=true
+    APP_URL=http://localhost
+
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=gohappymart
+    DB_USERNAME=root
+    DB_PASSWORD=
+
+# 💳 Midtrans Integration
+
+Aplikasi ini mendukung pembayaran online menggunakan **Midtrans Snap**.
+
+### 🔧 Tambahkan pada `.env`:
+
+    MIDTRANS_MERCHANT_ID=XXXXXXX
+    MIDTRANS_CLIENT_KEY=SB-Mid-client-XXXXXXXX
+    MIDTRANS_SERVER_KEY=SB-Mid-server-XXXXXXXX
+    MIDTRANS_IS_PRODUCTION=false
+
+### 💡 Alur Pembayaran Midtrans
+
+1.  User melakukan checkout di aplikasi
+2.  Aplikasi meminta **snap_token** ke Midtrans
+3.  User membayar melalui popup Snap
+4.  Midtrans mengirim notifikasi callback
+5.  Status pesanan diperbarui otomatis
+
+## 🧪 Running Tests
+
+``` bash
+php artisan test
+```
+
+## 📜 License
+
+Open-source mengikuti ketentuan repository.
