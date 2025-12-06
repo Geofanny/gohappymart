@@ -1,55 +1,40 @@
-<?php  
-class Pelanggan {
-    private $db;
-    private $table = 'pelanggan';
+<?php
 
-    public function __construct() {
-        $this->db = new Database();
-    }
+namespace App\Models;
 
-    // Ambil semua data pelanggan
-    public function getAllData() {
-        $query = "SELECT * FROM " . $this->table . " ORDER BY id_pelanggan DESC";
-        $this->db->query($query);
-        $this->db->execute();
-        return $this->db->resultObject();
-    }
+use App\Traits\HasUuid;
+use App\Models\Wishlist;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable; // penting
 
-    // Ambil data pelanggan berdasarkan ID
-    public function getById($id) {
-        $query = "SELECT * FROM " . $this->table . " WHERE id_pelanggan = ?";
-        $this->db->query($query);
-        $this->db->bind('i', $id);
-        $this->db->execute();
-        return $this->db->singleObject();
-    }
+class Pelanggan extends Authenticatable
+{
+    use HasFactory, HasUuid, Notifiable;
 
-    // Tambah pelanggan baru
-    public function insertData($nama, $email, $password, $alamat, $no_hp, $status = 'aktif') {
-        $query = "INSERT INTO " . $this->table . " 
-                  (nama_pelanggan, email, password, alamat, no_hp, tanggal_daftar, status)
-                  VALUES (?, ?, ?, ?, ?, NOW(), ?)";
-        $this->db->query($query);
-        $this->db->bind('ssssss', $nama, $email, $password, $alamat, $no_hp, $status);
-        return $this->db->execute();
-    }
+    protected $table = 'pelanggan';
+    protected $primaryKey = 'id_pelanggan';
+    protected $keyType = 'string';
+    public $incrementing = false;
+    public $timestamps = false;
 
-    // Update data pelanggan
-    public function updateData($id, $nama, $email, $password, $alamat, $no_hp, $status) {
-        $query = "UPDATE " . $this->table . " 
-                  SET nama_pelanggan = ?, email = ?, password = ?, alamat = ?, no_hp = ?, status = ?
-                  WHERE id_pelanggan = ?";
-        $this->db->query($query);
-        $this->db->bind('ssssssi', $nama, $email, $password, $alamat, $no_hp, $status, $id);
-        return $this->db->execute();
-    }
+    protected $fillable = [
+        'nama_pelanggan',
+        'username',
+        'email',
+        'no_hp',
+        'tgl_buat',
+        'password',
+        'jk',
+        'status',
+    ];
 
-    // Hapus pelanggan
-    public function deleteData($id) {
-        $query = "DELETE FROM " . $this->table . " WHERE id_pelanggan = ?";
-        $this->db->query($query);
-        $this->db->bind('i', $id);
-        return $this->db->execute();
+    protected $hidden = [
+        'password',
+    ];
+
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class, 'id_pelanggan', 'id_pelanggan');
     }
 }
-?>
