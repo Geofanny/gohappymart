@@ -1,4 +1,4 @@
-# Go Happy Mart (UMKM E-Commerce Platform) 2
+# Go Happy Mart (UMKM E-Commerce Platform)
 
 Go Happy Mart adalah aplikasi **E-Commerce UMKM** berbasis **Laravel
 11** yang dirancang untuk membantu pelaku UMKM dalam mengelola penjualan
@@ -22,12 +22,7 @@ menjalankan bisnis secara lebih efektif dan profesional.
 2.  **Controllers** → daftar & hubungkan view
 3.  **Routes** → `routes/web.php`
 4.  **Models** → query dan proses database
-5.  **Contoh Berkas**
-    -   Views: `coba.php`, `tambah.php`, `detail.php`, `edit.php`
-    -   Controller: `NyobaController.php`
-    -   Model: `Coba.php`
-6.  **Assets** → `public/`
-7.  **Database** → `gohappymart.sql` (sudah lengkap relasi)
+5.  **Assets** → `public/`
 
 ## 📦 Installation
 
