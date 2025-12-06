@@ -1,4 +1,4 @@
-# Go Happy Mart (UMKM E-Commerce Platform)
+# Go Happy Mart (UMKM E-Commerce Platform) 1
 
 Go Happy Mart adalah aplikasi **E-Commerce UMKM** berbasis **Laravel
 11** yang dirancang untuk membantu pelaku UMKM dalam mengelola penjualan
