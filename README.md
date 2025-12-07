@@ -97,10 +97,41 @@ Aplikasi ini mendukung pembayaran online menggunakan **Midtrans Snap**.
 4.  Midtrans mengirim notifikasi callback
 5.  Status pesanan diperbarui otomatis
 
+## 📂 Storage Symlink & File Upload Fix
+
+Jika gambar tidak muncul dan muncul error **403 Forbidden**, lakukan
+langkah berikut:
+
+### 1. Hapus symlink lama
+
+``` bash
+rmdir public/storage -force -recurse
+```
+
+### 2. Buat ulang symlink Laravel
+
+``` bash
+php artisan storage:link
+```
+
+### 3. Pastikan struktur direktori benar
+
+-   Path publik: `public/storage/uploads/produk/namafile.jpg`
+-   Path sumber: `storage/app/public/uploads/produk/namafile.jpg`
+
+### 4. Pastikan permission folder benar (Linux)
+
+``` bash
+chmod -R 775 storage
+chmod -R 775 public/storage
+```
+
+Jika semua benar, gambar akan tampil normal.
+
 ## 🧪 Running Tests
 
 ``` bash
-php artisan test
+php artisan serve
 ```
 
 ## 📜 License

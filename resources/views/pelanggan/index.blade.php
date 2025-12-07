@@ -918,6 +918,23 @@
             <div class="owl-carousel owl-theme trending-carousel" style="margin-top: -8vh;">
 
                 @foreach ($produkPopuler as $p)
+                    @php
+                        $promo = $p->promos->where('kategori', 'flashsale')->first();
+                        $diskon = $promo ? $promo->nilai_diskon : 0;
+                        $tipeDiskon = $promo ? $promo->tipe : null;
+
+                        if ($promo) {
+                            if ($tipeDiskon === 'Persen') {
+                                $hargaSetelahDiskon = $p->harga - ($p->harga * $diskon) / 100;
+                            } elseif ($tipeDiskon === 'Nominal') {
+                                $hargaSetelahDiskon = max(0, $p->harga - $diskon);
+                            } else {
+                                $hargaSetelahDiskon = $p->harga;
+                            }
+                        } else {
+                            $hargaSetelahDiskon = $p->harga;
+                        }
+                    @endphp
                     <div class="item p-2 product-loaded real-item">
                         <div class="card text-center card-product">
                             <div class="card-product__img">
@@ -935,15 +952,9 @@
                                 <p class="card-product__price">
                                     <a href="/detail-produk/{{ $p->id_produk }}">
                                         {{-- {{$p->harga_promo }} --}}
-                                        @if ($p->harga_promo < $p->harga)
-                                            <strong style="color: #D60000;">
-                                                Rp. {{ number_format($p->harga_promo, 0, ',', '.') }}
-                                            </strong>
-                                        @else
-                                            <strong style="color: #D60000;">
-                                                Rp. {{ number_format($p->harga, 0, ',', '.') }}
-                                            </strong>
-                                        @endif
+                                        <strong style="color: #D60000;">
+                                            Rp. {{ number_format($hargaSetelahDiskon, 0, ',', '.') }}
+                                        </strong>
                                     </a>
                                 </p>
                             </div>
