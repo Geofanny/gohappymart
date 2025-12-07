@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrator Login | Go Happy Mart</title>
-  <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon">
+  <title>Dashboard Administrator - Go Happy Mart</title>
+  <link rel="icon" href="{{ asset('assets-user/img/logo-toko.png') }}" type="image/x-icon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600&display=swap">
 
   <style>

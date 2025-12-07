@@ -47,8 +47,8 @@ class TokoController extends Controller
         // die;
         // Validasi input
         $validated = $request->validate([
-            'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'logo' => 'nullable|image|mimes:jpg,jpeg,png',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png',
             'nama' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
             'email' => 'required|string|max:255',

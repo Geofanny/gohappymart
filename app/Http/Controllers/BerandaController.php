@@ -17,7 +17,7 @@ class BerandaController extends Controller
 {
     public function index()
     {   
-        $hariIni = now()->toDateString();
+        $hariIni = now();
 
         $produkPopuler = Produk::where('status','aktif')
             ->with(['promos' => function($q) use ($hariIni) {
@@ -29,23 +29,23 @@ class BerandaController extends Controller
             ->get();
     
         // Hitung harga promo langsung di setiap produk
-        foreach($produkPopuler as $p) {
-            if ($p->promos->count() > 0) {
-                $promo = $p->promos->first();
+        // foreach($produkPopuler as $p) {
+        //     if ($p->promos->count() > 0) {
+        //         $promo = $p->promos->first();
     
-                // Diskon persen
-                if ($promo->tipe === 'Persen') {
-                    $p->harga_promo = $p->harga - ($p->harga * ($promo->nilai_diskon / 100));
-                }
+        //         // Diskon persen
+        //         if ($promo->tipe === 'Persen') {
+        //             $p->harga_promo = $p->harga - ($p->harga * ($promo->nilai_diskon / 100));
+        //         }
     
-                // Diskon nominal
-                elseif ($promo->tipe === 'Nominal') {
-                    $p->harga_promo = max(0, $p->harga - $promo->nilai_diskon);
-                }
-            } else {
-                $p->harga_promo = null;
-            }
-        }
+        //         // Diskon nominal
+        //         elseif ($promo->tipe === 'Nominal') {
+        //             $p->harga_promo = max(0, $p->harga - $promo->nilai_diskon);
+        //         }
+        //     } else {
+        //         $p->harga_promo = null;
+        //     }
+        // }
         
         $kategori = Kategori::all();
         $produkDiskon = Produk::where('status','aktif')->limit(10)->get();
@@ -64,6 +64,8 @@ class BerandaController extends Controller
             ->where('tgl_selesai', '>=', $now)
             ->orderBy('tgl_mulai', 'desc')
             ->first();
+
+            // dd($promoFlashsale);
     
         // Ambil produk flashsale hanya jika ada promo aktif
         $produkFlashsale = collect();
@@ -148,9 +150,16 @@ class BerandaController extends Controller
         ->limit(8)
         ->get();
 
+        $promoBanners = Promo::where('status', 'Aktif')
+        ->whereNotNull('banner')
+        ->whereDate('tgl_mulai', '<=', now())
+        ->whereDate('tgl_selesai', '>=', now())
+        ->orderBy('tgl_mulai', 'desc')
+        ->get();
+
         
         return view('pelanggan.index',compact([
-            'produkPopuler','kategori', 'produkDiskon','produkRekomendasi','wishlistProdukIds','produkFlashsale','produkBigsale','produkUmumSale','promoFlashsale','promoBigsale','promoUmum','testimoniToko','berita'
+            'produkPopuler','kategori', 'produkDiskon','produkRekomendasi','wishlistProdukIds','produkFlashsale','produkBigsale','produkUmumSale','promoFlashsale','promoBigsale','promoUmum','testimoniToko','berita','promoBanners'
         ]));
     }
 

@@ -48,7 +48,7 @@
                                 <div id="bannerPreviewContainer"
                                     style="border: 2px dashed #ccc; border-radius: 10px; overflow: hidden; background-color: #f9f9f9; height: 250px;">
                                     <img id="bannerPreview"
-                                        src="{{ isset($flashsale->banner) ? asset('storage/uploads/flashsale/' . $flashsale->banner) : '#' }}"
+                                        src="{{ isset($flashsale->banner) ? asset('storage/uploads/promo/' . $flashsale->banner) : '#' }}"
                                         alt="Preview Banner"
                                         style="width: 100%; height: 100%; object-fit: cover; {{ isset($flashsale->banner) ? '' : 'display:none;' }}">
                                 </div>

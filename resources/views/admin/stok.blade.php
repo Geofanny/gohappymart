@@ -24,6 +24,13 @@
                         <option value="aman">Aman</option>
                     </select>
 
+                    <form id="formPrintStok" action="{{ route('stok-produk.pdf') }}" method="GET" target="_blank">
+                        <input type="hidden" name="status" id="statusInput">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-print me-1"></i> Print
+                        </button>
+                    </form>                    
+
                     <!-- Tombol Info Bulat -->
                     <button type="button" class="btn btn-secondary rounded-circle p-0"
                         style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;"
@@ -327,6 +334,16 @@
             });
         @endif
     </script>
+    <script>
+        const selectStok = document.getElementById('filterStok');
+        const statusInput = document.getElementById('statusInput');
+        const formPrint = document.getElementById('formPrintStok');
+    
+        formPrint.addEventListener('submit', function(e){
+            statusInput.value = selectStok.value; // kirim nilai select ke form
+        });
+    </script>
+    
     <script>
         $(document).ready(function() {
             $('#dom-jqry').DataTable({

@@ -721,8 +721,8 @@
             <!-- 🟡 Tengah (search lebih besar, col-md-9) -->
             <div class="col-md-7 d-flex justify-content-center">
                 <form action="{{ route('pelanggan.cariProduk') }}" method="GET" class="w-100">
-                    <input type="search" name="q" class="form-control search-fixed" placeholder="Cari produk..."
-                        value="{{ request('q') }}">
+                    <input type="search" name="q" class="form-control search-fixed"
+                        placeholder="Pencarian produk ...">
                 </form>
             </div>
 
@@ -802,7 +802,7 @@
     </style>
 
     <!-- ================ Banner Carousel Start ================= -->
-    <section class="banner-carousel mb-2" style="margin-top: 1vh;">
+    {{-- <section class="banner-carousel mb-2" style="margin-top: 1vh;">
         <div class="container">
             <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
 
@@ -811,14 +811,20 @@
                     <div class="carousel-item active">
                         <img src="{{ asset('assets-user/img/product/b1.png') }}" class="d-block w-100 banner-img"
                             alt="Banner 1">
+                        <!-- Badge Lihat Promo -->
+                        <div class="promo-badge">Lihat Promo <i class="fa-solid fa-angle-right"></i></div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ asset('assets-user/img/product/b2.png') }}" class="d-block w-100 banner-img"
                             alt="Banner 2">
+                        <!-- Badge Lihat Promo -->
+                        <div class="promo-badge">Lihat Promo <i class="fa-solid fa-angle-right"></i></div>
                     </div>
                     <div class="carousel-item">
                         <img src="{{ asset('assets-user/img/product/b3.png') }}" class="d-block w-100 banner-img"
                             alt="Banner 3">
+                        <!-- Badge Lihat Promo -->
+                        <div class="promo-badge">Lihat Promo <i class="fa-solid fa-angle-right"></i></div>
                     </div>
                 </div>
 
@@ -830,7 +836,68 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+
+    <section class="banner-carousel mb-2" style="margin-top: 1vh;">
+        <div class="container">
+            <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+
+                @php
+                    // Ambil maksimal 3 promo terbaru
+                    $carouselItems = $promoBanners->sortByDesc('tgl_mulai')->take(3);
+
+                    // Jika kosong, buat default 3 item
+                    if ($carouselItems->isEmpty()) {
+                        $carouselItems = collect([
+                            (object) ['banner' => asset('assets-user/img/product/b1.png'), 'nama_promo' => 'Banner 1'],
+                            (object) ['banner' => asset('assets-user/img/product/b2.png'), 'nama_promo' => 'Banner 2'],
+                            (object) ['banner' => asset('assets-user/img/product/b3.png'), 'nama_promo' => 'Banner 3'],
+                        ]);
+                    }
+                @endphp
+
+                <!-- Carousel items -->
+                <div class="carousel-inner">
+                    @foreach ($carouselItems as $index => $item)
+                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                            <img src="{{ $item->banner }}" class="d-block w-100 banner-img"
+                                alt="{{ $item->nama_promo ?? 'Banner ' . ($index + 1) }}">
+                            <div class="promo-badge" style="cursor:pointer"
+                                onclick="window.location.href='{{ url('/detail-promo') }}'">
+                                Lihat Promo <i class="fa-solid fa-angle-right"></i>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Custom line indicators -->
+                <div class="carousel-line-indicators d-flex justify-content-center mt-3">
+                    @foreach ($carouselItems as $index => $promo)
+                        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="{{ $index }}"
+                            class="{{ $index == 0 ? 'active' : '' }}"></button>
+                    @endforeach
+                </div>
+
+            </div>
+        </div>
     </section>
+
+
+    <style>
+        .promo-badge {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            background: #ffffff;
+            color: #000;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+
     <!-- ================ Banner Carousel End ================= -->
 
     {{-- Kategori Produk --}}
@@ -919,7 +986,8 @@
 
                 @foreach ($produkPopuler as $p)
                     @php
-                        $promo = $p->promos->where('kategori', 'flashsale')->first();
+                        // Ambil promo aktif pertama (tanpa filter kategori)
+                        $promo = $p->promos->first();
                         $diskon = $promo ? $promo->nilai_diskon : 0;
                         $tipeDiskon = $promo ? $promo->tipe : null;
 
@@ -961,6 +1029,7 @@
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </div>
     </section>
@@ -1078,7 +1147,7 @@
                         </div>
 
                         <!-- 🔹 Lihat Semua Produk -->
-                        <a href="#" class="lihat-semua-produk text-decoration-none fw-semibold">
+                        <a href="/detail-promo" class="lihat-semua-produk text-decoration-none fw-semibold">
                             Lihat Semua Produk <i class="fa-solid fa-angle-right"></i>
                         </a>
                     </div>
@@ -1269,7 +1338,7 @@
                         <span class="time-digit" id="seconds-big">00</span>
                     </div>
 
-                    <a href="#" class="btn-see-all" style="font-size: 1.2rem">
+                    <a href="/detail-promo" class="btn-see-all" style="font-size: 1.2rem">
                         Lihat Semua <i class="fa-solid fa-angle-right"></i>
                     </a>
                 </div>
@@ -1317,7 +1386,7 @@
                                         <p class="card-product__price">
                                             <a href="/detail-produk/{{ $p->id_produk }}">
                                                 <span class="text-muted"
-                                                    style="text-decoration: line-through; opacity: 0.6;">
+                                                    style="text-decoration: line-through; opacity: 0.6;font-size: 2.3vh;">
                                                     Rp. {{ number_format($p->harga, 0, ',', '.') }}
                                                 </span><br>
                                                 <strong style="color: #D60000;">
@@ -1347,7 +1416,7 @@
                         </div>
 
                         <!-- 🔹 Lihat Semua Produk -->
-                        <a href="#" class="lihat-semua-produk text-decoration-none fw-semibold">
+                        <a href="/detail-promo" class="lihat-semua-produk text-decoration-none fw-semibold">
                             Lihat Semua Promo <i class="fa-solid fa-angle-right"></i>
                         </a>
                     </div>
@@ -2104,6 +2173,30 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Pilih semua carousel-item
+            const carouselItems = document.querySelectorAll('.banner-carousel .carousel-item');
+
+            carouselItems.forEach(item => {
+                item.style.cursor = 'pointer'; // biar terlihat clickable
+                item.addEventListener('click', function() {
+                    // Arahkan ke /detail-promo saat diklik
+                    window.location.href = "{{ url('/detail-promo') }}";
+                });
+            });
+
+            // Opsional: hanya badge yang bisa diklik
+            const promoBadges = document.querySelectorAll('.banner-carousel .promo-badge');
+            promoBadges.forEach(badge => {
+                badge.addEventListener('click', function(e) {
+                    e.stopPropagation(); // jangan trigger click parent
+                    window.location.href = "{{ url('/detail-promo') }}";
+                });
+            });
+        });
+    </script>
+
 
     <script>
         $(document).ready(function() {

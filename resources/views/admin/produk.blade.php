@@ -19,6 +19,12 @@
                         <i class="ti ti-plus me-2"></i> Tambah Produk
                     </a>
 
+                    <form action="{{ route('produk.pdf') }}" method="GET" target="_blank">
+                        <button type="submit" class="btn btn-primary d-inline-flex align-items-center">
+                            <i class="fas fa-print me-2"></i> Print
+                        </button>
+                    </form>            
+
                 </div>
             </div>
         </div>

@@ -7,10 +7,12 @@ use App\Models\User;
 use App\Models\Promo;
 use App\Models\Produk;
 use App\Models\Kategori;
+use App\Models\Wishlist;
 use App\Models\ProdukPromo;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PromoController extends Controller
@@ -345,12 +347,11 @@ class PromoController extends Controller
         if ($request->hasFile('banner')) {
             $file = $request->file('banner');
             $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('uploads/flashsale', $filename, 'public');
+            $file->storeAs('uploads/promo', $filename, 'public');
             $bannerPath = $filename;
-
             // hapus banner lama jika sedang update
-            if ($promo && $promo->banner && Storage::disk('public')->exists('uploads/flashsale/' . $promo->banner)) {
-                Storage::disk('public')->delete('uploads/flashsale/' . $promo->banner);
+            if ($promo && $promo->banner && Storage::disk('public')->exists('uploads/promo/' . $promo->banner)) {
+                Storage::disk('public')->delete('uploads/promo/' . $promo->banner);
             }
         }
 
@@ -375,7 +376,7 @@ class PromoController extends Controller
             Promo::create([
                 'id_user' => $user->id_user,
                 'banner' => $bannerPath,
-                'nama_promo' => 'Flash Sale ' . now()->format('d/m/Y H:i'),
+                'nama_promo' => 'Flash Sale',
                 'tipe' => $request->tipe,
                 'nilai_diskon' => $request->jumlah_diskon,
                 'tgl_mulai' => $tglMulai,
@@ -468,12 +469,12 @@ class PromoController extends Controller
         if ($request->hasFile('banner')) {
             $file = $request->file('banner');
             $filename = Str::random(10) . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('uploads/bigsale', $filename, 'public');
+            $file->storeAs('uploads/promo', $filename, 'public');
             $bannerPath = $filename;
 
             // hapus banner lama jika sedang update
-            if ($promo && $promo->banner && Storage::disk('public')->exists('uploads/bigsale/' . $promo->banner)) {
-                Storage::disk('public')->delete('uploads/bigsale/' . $promo->banner);
+            if ($promo && $promo->banner && Storage::disk('public')->exists('uploads/promo/' . $promo->banner)) {
+                Storage::disk('public')->delete('uploads/promo/' . $promo->banner);
             }
         }
 
@@ -538,6 +539,102 @@ class PromoController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
+    }
+
+    public function detailPromo()
+    {
+        $now = now();
+
+        // Ambil semua promo aktif
+        $promos = Promo::with(['produks' => function($query) use ($now) {
+            $query->where('status', 'aktif')
+                ->with(['promos' => function($q) use ($now) {
+                    $q->where('status', 'aktif')
+                        ->whereDate('tgl_mulai', '<=', $now)
+                        ->whereDate('tgl_selesai', '>=', $now);
+                }]);
+        }])
+        ->where('status', 'aktif')
+        ->orderBy('tgl_selesai', 'asc')
+        ->get();
+
+        $promoFlashsale = Promo::where('kategori', 'flashsale')
+        ->where('status', 'Aktif')
+        ->where('tgl_mulai', '<=', $now)
+        ->where('tgl_selesai', '>=', $now)
+        ->orderBy('tgl_mulai', 'desc')
+        ->first();
+
+        // dd($promoFlashsale);
+
+        // Ambil produk flashsale hanya jika ada promo aktif
+        $produkFlashsale = collect();
+        if ($promoFlashsale) {
+            $produkFlashsale = Produk::whereHas('promos', function ($query) use ($now) {
+                $query->where('kategori', 'flashsale')
+                    ->where('status', 'aktif')
+                    ->where('tgl_mulai', '<=', $now)
+                    ->where('tgl_selesai', '>=', $now);
+            })
+            ->where('status', 'aktif')
+            ->limit(20)
+            ->get();
+        }
+
+        $promoBigsale = Promo::where('kategori', 'bigsale')
+        ->where('status', 'Aktif')
+        ->where('tgl_mulai', '<=', $now) 
+        ->where('tgl_selesai', '>=', $now)
+        ->orderBy('tgl_mulai', 'desc')
+        ->first();
+
+        $produkBigsale = collect();
+        if ($promoBigsale) {
+            $produkBigsale = Produk::whereHas('promos', function ($query) use ($now) {
+                $query->where('kategori', 'bigsale')
+                    ->where('status', 'Aktif')
+                    ->where('tgl_mulai', '<=', $now)
+                    ->where('tgl_selesai', '>=', $now);
+            })
+            ->where('status', 'aktif')
+            ->limit(20)
+            ->get();
+        }
+
+        $promoUmumList = Promo::where('kategori', 'umum')
+        ->where('status', 'Aktif')
+        ->where('tgl_mulai', '<=', $now)
+        ->where('tgl_selesai', '>=', $now)
+        ->orderBy('tgl_mulai', 'desc')
+        ->get();
+
+        $produkUmumSaleList = [];
+        foreach ($promoUmumList as $promo) {
+            $produk = Produk::whereHas('promos', function ($query) use ($promo, $now) {
+                $query->where('promo.id_promo', $promo->id_promo) // <-- gunakan alias tabel
+                    ->where('status', 'Aktif')
+                    ->whereDate('tgl_mulai', '<=', $now)
+                    ->whereDate('tgl_selesai', '>=', $now);
+            })
+            ->where('status', 'aktif')
+            ->get();
+
+            $produkUmumSaleList[$promo->id_promo] = [
+                'promo' => $promo,
+                'produk' => $produk
+            ];
+        }
+
+        $wishlistProdukIds = [];
+        if (Auth::guard('pelanggan')->check()) {
+            $pelangganId = Auth::guard('pelanggan')->id();
+            // Ambil semua id_produk yang ada di wishlist user
+            $wishlistProdukIds = Wishlist::where('id_pelanggan', $pelangganId)
+                                         ->pluck('id_produk')
+                                         ->toArray();
+        }
+
+        return view('pelanggan.detail-promo', compact('promos','produkFlashsale','produkBigsale','produkUmumSaleList','promoFlashsale','promoBigsale','wishlistProdukIds'));
     }
     
 

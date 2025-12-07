@@ -6,6 +6,7 @@ use App\Http\Controllers\TokoController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\KeranjangController;
@@ -28,6 +29,8 @@ Route::get('/pencarian', [BerandaController::class, 'cariProduk'])->name('pelang
 
 Route::get('/cari-produk', [BerandaController::class,'cariProduk']);
 Route::get('/detail-produk/{id_produk}', [ProdukController::class,'index']);
+
+Route::get('/detail-promo', [PromoController::class,'detailPromo']);
 
 // Login
 Route::get('/login', [AuthController::class,'login']);
@@ -115,6 +118,8 @@ Route::middleware(['auth.admin', 'role:superadmin'])->group(function () {
     Route::get('/dashboard/rating/toko', [PesananController::class, 'menuRatingToko']);
 
     Route::get('/dashboard/laporan/keuangan', [PesananController::class, 'menuLaporanKeuangan']);
+
+    Route::get('/laporan-keuangan/pdf', [LaporanController::class, 'generatePdf'])->name('laporan-keuangan.pdf');
     
 });
 
@@ -164,7 +169,8 @@ Route::middleware(['auth.admin', 'role:admin'])->group(function () {
     Route::post('/admin/ulasan/{id}/reply', [PesananController::class, 'reply'])
      ->name('admin.ulasan.reply');
 
-    
+     Route::get('/pelanggan/print', [LaporanController::class, 'printPelanggan'])
+     ->name('pelanggan.print');
 
 });
 
@@ -232,6 +238,12 @@ Route::middleware(['auth.admin', 'role:admin,superadmin'])->group(function () {
     Route::post('/reguslasiBaru', [SuperAdminRegulasiController::class, 'store']);
     Route::delete('/hapusRegulasi/{id_regulasi}', [SuperAdminRegulasiController::class, 'destroy']);
     Route::put('/updateRegulasi/{id_regulasi}', [SuperAdminRegulasiController::class, 'update']);
+
+    Route::get('/stok-produk/pdf', [LaporanController::class, 'generatePdfStok'])->name('stok-produk.pdf');
+
+    Route::get('/dashboard-admin/produk/laporan/pdf', [LaporanController::class, 'generatePdfProduk'])
+    ->name('produk.pdf'); 
+
 
 });
 

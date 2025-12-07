@@ -9,21 +9,31 @@
     <!-- [ breadcrumb ] start -->
     <div class="page-header mb-3">
         <div class="page-block">
-            <div class="row align-items-center">
+            <div class="row align-items-center mb-3">
                 <div class="col-12 col-md-6 mb-2 mb-md-0">
                     <h1 class="mb-0">Pelanggan</h1>
                 </div>
                 <div class="col-12 col-md-6 d-flex justify-content-md-end justify-content-start gap-2">
-
-                    <!-- Select Filter Pewarnaan Stok -->
-                    <select id="filterStok" class="form-select form-select-sm me-2" style="width: auto;">
-                        <option value="">Semua Status</option>
-                        <option value="aktif">Aktif</option>
-                        <option value="nonaktif">Nonaktif</option>
-                    </select>
-
+            
+                    <!-- Form Filter & Print -->
+                    <form action="{{ route('pelanggan.print') }}" method="GET" target="_blank" class="d-flex gap-2">
+            
+                        <!-- Select Filter Status -->
+                        <select name="status" class="form-select form-select-sm" style="width: auto;">
+                            <option value="">Semua Status</option>
+                            <option value="aktif" {{ request('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
+                            <option value="nonaktif" {{ request('status') == 'nonaktif' ? 'selected' : '' }}>Nonaktif</option>
+                        </select>
+            
+                        <!-- Tombol Print -->
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            <i class="fas fa-print me-1"></i> Print
+                        </button>
+                    </form>
+            
                 </div>
             </div>
+            
         </div>
     </div>
 

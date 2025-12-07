@@ -9,50 +9,50 @@
     <!-- Card Filter -->
     <div class="card shadow-sm border-0 mb-4">
         <div class="card-body p-4">
-            <div class="row g-3 align-items-end">
+            <form action="{{ route('laporan-keuangan.pdf') }}" method="GET" target="_blank" class="row g-3 align-items-end">
 
+                <!-- Select Bulan -->
                 <!-- Select Bulan -->
                 <div class="col-md-4">
                     <label class="form-label text-muted">Bulan</label>
-                    <select class="form-select shadow-sm">
-                        <option>Pilih Bulan</option>
-                        <option>Januari</option>
-                        <option>Februari</option>
-                        <option>Maret</option>
-                        <option>April</option>
-                        <option>Mei</option>
-                        <option>Juni</option>
-                        <option>Juli</option>
-                        <option>Agustus</option>
-                        <option>September</option>
-                        <option>Oktober</option>
-                        <option>November</option>
-                        <option>Desember</option>
+                    <select name="bulan" class="form-select shadow-sm" required>
+                        <option value="">Pilih Bulan</option>
+                        @foreach (range(1, 12) as $b)
+                            <option value="{{ $b }}"
+                                {{ (request('bulan') ?? now()->month) == $b ? 'selected' : '' }}>
+                                {{ DateTime::createFromFormat('!m', $b)->format('F') }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
 
                 <!-- Select Tahun -->
                 <div class="col-md-4">
                     <label class="form-label text-muted">Tahun</label>
-                    <select class="form-select shadow-sm">
-                        <option>Pilih Tahun</option>
-                        <option>2024</option>
-                        <option>2025</option>
-                        <option>2026</option>
+                    <select name="tahun" class="form-select shadow-sm" required>
+                        <option value="">Pilih Tahun</option>
+                        @foreach (range(date('Y') - 1, date('Y') + 1) as $t)
+                            <option value="{{ $t }}"
+                                {{ (request('tahun') ?? now()->year) == $t ? 'selected' : '' }}>
+                                {{ $t }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
+
 
                 <!-- Tombol Print -->
                 <div class="col-md-4">
                     <label class="form-label text-muted">Aksi</label>
-                    <button class="btn btn-primary w-100 shadow-sm">
+                    <button type="submit" class="btn btn-primary w-100 shadow-sm">
                         <i class="fas fa-print me-2"></i> Print
                     </button>
                 </div>
 
-            </div>
+            </form>
         </div>
     </div>
+
 
     <!-- Card Pemasukan & Pengeluaran -->
     <div class="row g-4">
@@ -64,7 +64,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-muted mb-1">Total Pengeluaran</h6>
-                            <h3 class="fw-bold text-danger mb-0">Rp 2.500.000</h3>
+                            <h3 class="fw-bold text-danger mb-0">Rp {{ number_format($totalPengeluaran, 0, ',', '.') }}</h3>
                         </div>
                         <div class="rounded-circle bg-danger bg-opacity-10 p-3">
                             <i class="fas fa-arrow-circle-down text-danger fs-1"></i>
@@ -81,7 +81,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-muted mb-1">Total Pemasukan</h6>
-                            <h3 class="fw-bold text-success mb-0">Rp 4.800.000</h3>
+                            <h3 class="fw-bold text-success mb-0">Rp {{ number_format($totalPemasukan, 0, ',', '.') }}</h3>
                         </div>
                         <div class="rounded-circle bg-success bg-opacity-10 p-3">
                             <i class="fas fa-arrow-circle-up text-success fs-1"></i>
@@ -93,103 +93,62 @@
 
     </div>
 
+
     {{-- Tabel --}}
     {{-- Tabel --}}
-<div class="col-sm-12">
-    <div class="card shadow-sm border-0 rounded-3">
-        <div class="card-body">
-            <div class="dt-responsive">
+    <div class="col-sm-12">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-body">
+                <div class="dt-responsive">
 
-                <table id="dom-jqry" class="table table-striped table-bordered nowrap align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Tanggal Transaksi</th>
-                            <th>Jenis</th>
-                            <th>Keterangan</th>
-                            <th>Jumlah</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
+                    <table id="dom-jqry" class="table table-striped table-bordered nowrap align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Tanggal Transaksi</th>
+                                <th>Jenis</th>
+                                <th>Keterangan</th>
+                                <th>Jumlah</th>
+                            </tr>
+                        </thead>
 
-                    <tbody>
-                        <!-- Row 1 -->
-                        <tr>
-                            <td>1</td>
-                            <td>2025-01-10</td>
-                            <td><span class="badge bg-success">Pemasukan</span></td>
-                            <td>Pembayaran pesanan #INV001</td>
-                            <td class="fw-bold text-success">Rp 1.200.000</td>
-                            <td>
-                                <button class="btn btn-info btn-sm">
-                                    <i class="ti ti-eye me-1"></i> Detail
-                                </button>
-                            </td>
-                        </tr>
+                        <tbody>
+                            @foreach ($recentTransactions as $key => $trx)
+                                <tr>
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>{{ $trx['time']->format('Y-m-d') }}</td>
+                                    <td>
+                                        @if ($trx['type'] === 'in')
+                                            <span class="badge bg-success">Pemasukan</span>
+                                        @else
+                                            <span class="badge bg-danger">Pengeluaran</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $trx['keterangan'] }}</td>
+                                    <td class="fw-bold {{ $trx['type'] === 'in' ? 'text-success' : 'text-danger' }}">
+                                        Rp {{ number_format($trx['amount'], 0, ',', '.') }}
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
 
-                        <!-- Row 2 -->
-                        <tr>
-                            <td>2</td>
-                            <td>2025-01-12</td>
-                            <td><span class="badge bg-danger">Pengeluaran</span></td>
-                            <td>Belanja stok bahan baku</td>
-                            <td class="fw-bold text-danger">Rp 750.000</td>
-                            <td>
-                                <button class="btn btn-info btn-sm">
-                                    <i class="ti ti-eye me-1"></i> Detail
-                                </button>
-                            </td>
-                        </tr>
 
-                        <!-- Row 3 -->
-                        <tr>
-                            <td>3</td>
-                            <td>2025-01-15</td>
-                            <td><span class="badge bg-success">Pemasukan</span></td>
-                            <td>Pembayaran pesanan #INV002</td>
-                            <td class="fw-bold text-success">Rp 3.600.000</td>
-                            <td>
-                                <button class="btn btn-info btn-sm">
-                                    <i class="ti ti-eye me-1"></i> Detail
-                                </button>
-                            </td>
-                        </tr>
+                        <tfoot class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Tanggal Transaksi</th>
+                                <th>Jenis</th>
+                                <th>Keterangan</th>
+                                <th>Jumlah</th>
+                            </tr>
+                        </tfoot>
 
-                        <!-- Row 4 -->
-                        <tr>
-                            <td>4</td>
-                            <td>2025-01-17</td>
-                            <td><span class="badge bg-danger">Pengeluaran</span></td>
-                            <td>Gaji pegawai mingguan</td>
-                            <td class="fw-bold text-danger">Rp 1.200.000</td>
-                            <td>
-                                <button class="btn btn-info btn-sm">
-                                    <i class="ti ti-eye me-1"></i> Detail
-                                </button>
-                            </td>
-                        </tr>
+                    </table>
 
-                    </tbody>
-
-                    <tfoot class="table-light">
-                        <tr>
-                            <th>#</th>
-                            <th>Tanggal Transaksi</th>
-                            <th>Jenis</th>
-                            <th>Keterangan</th>
-                            <th>Jumlah</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
-
-                </table>
-
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-
 @endsection
 @section('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

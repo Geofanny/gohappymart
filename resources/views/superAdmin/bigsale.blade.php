@@ -48,7 +48,7 @@
                                 <div id="bannerPreviewContainer"
                                     style="border: 2px dashed #ccc; border-radius: 10px; overflow: hidden; background-color: #f9f9f9; height: 250px;">
                                     <img id="bannerPreview"
-                                        src="{{ isset($bigsale->banner) ? asset('storage/uploads/bigsale/' . $bigsale->banner) : '#' }}"
+                                        src="{{ isset($bigsale->banner) ? asset('storage/uploads/promo/' . $bigsale->banner) : '#' }}"
                                         alt="Preview Banner"
                                         style="width: 100%; height: 100%; object-fit: cover; {{ isset($bigsale->banner) ? '' : 'display:none;' }}">
                                 </div>
