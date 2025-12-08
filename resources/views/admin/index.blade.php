@@ -123,7 +123,7 @@
                 </div>
             </div>
 
-            <h5 class="mb-3 fw-semibold text-dark">Stok Hampir Habis</h5>
+            <h5 class="mb-3 fw-semibold text-dark">Stok Produk</h5>
             <div class="card shadow-sm rounded-3">
                 <div class="list-group list-group-flush">
 
