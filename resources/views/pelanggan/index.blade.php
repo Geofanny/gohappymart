@@ -841,27 +841,35 @@
     <section class="banner-carousel mb-2" style="margin-top: 1vh;">
         <div class="container">
             <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
-
+        
                 @php
                     // Ambil maksimal 3 promo terbaru
                     $carouselItems = $promoBanners->sortByDesc('tgl_mulai')->take(3);
-
-                    // Jika kosong, buat default 3 item
+        
+                    // Jika kosong → pakai default banners
                     if ($carouselItems->isEmpty()) {
                         $carouselItems = collect([
                             (object) ['banner' => asset('assets-user/img/product/b1.png'), 'nama_promo' => 'Banner 1'],
                             (object) ['banner' => asset('assets-user/img/product/b2.png'), 'nama_promo' => 'Banner 2'],
                             (object) ['banner' => asset('assets-user/img/product/b3.png'), 'nama_promo' => 'Banner 3'],
                         ]);
+                    } else {
+                        // Format ulang supaya path banner sesuai storage
+                        $carouselItems = $carouselItems->map(function ($item) {
+                            $item->banner = asset('storage/uploads/promo/' . $item->banner);
+                            return $item;
+                        });
                     }
                 @endphp
-
+        
                 <!-- Carousel items -->
                 <div class="carousel-inner">
                     @foreach ($carouselItems as $index => $item)
                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                            <img src="{{ $item->banner }}" class="d-block w-100 banner-img"
+                            <img src="{{ $item->banner }}"
+                                class="d-block w-100 banner-img"
                                 alt="{{ $item->nama_promo ?? 'Banner ' . ($index + 1) }}">
+        
                             <div class="promo-badge" style="cursor:pointer"
                                 onclick="window.location.href='{{ url('/detail-promo') }}'">
                                 Lihat Promo <i class="fa-solid fa-angle-right"></i>
@@ -869,17 +877,21 @@
                         </div>
                     @endforeach
                 </div>
-
+        
                 <!-- Custom line indicators -->
                 <div class="carousel-line-indicators d-flex justify-content-center mt-3">
                     @foreach ($carouselItems as $index => $promo)
-                        <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="{{ $index }}"
-                            class="{{ $index == 0 ? 'active' : '' }}"></button>
+                        <button type="button"
+                                data-bs-target="#bannerCarousel"
+                                data-bs-slide-to="{{ $index }}"
+                                class="{{ $index == 0 ? 'active' : '' }}">
+                        </button>
                     @endforeach
                 </div>
-
+        
             </div>
         </div>
+        
     </section>
 
 
@@ -1195,27 +1207,41 @@
                                         </a>
                                     </p>
                                     <style>
+                                        /* Wrapper agar ikon bisa absolute */
+                                        .progress-wrapper {
+                                            position: relative;
+                                            width: 100%;
+                                            margin-bottom: 5px;
+                                        }
+                                    
+                                        /* Ikon petir absolute */
+                                        .bolt-icon {
+                                            position: absolute;
+                                            left: 2px;            /* geser kiri (sesuaikan) */
+                                            top: 50%;              /* posisikan di tengah progress bar */
+                                            transform: translateY(-50%);
+                                            font-size: 36px;       /* ikon besar */
+                                            color: #f4c20d;
+                                            z-index: 10;           /* pastikan di atas progress bar */
+                                            pointer-events: none;  /* biar tidak ganggu klik */
+                                        }
+                                    
                                         .progress {
                                             position: relative;
                                             height: 25px;
                                             border-radius: 10px;
                                             overflow: hidden;
-                                            font-size: 13px;
                                             background-color: #e3f2fd;
-                                            /* 💡 biru muda sebagai latar belakang */
                                         }
-
+                                    
                                         .progress-bar {
                                             background-color: #f31818;
-                                            /* 💡 biru utama (tema) */
                                             display: flex;
                                             align-items: center;
                                             justify-content: center;
-                                            text-align: center;
-                                            white-space: nowrap;
                                             transition: width 0.8s ease-in-out;
                                         }
-
+                                    
                                         .progress-text {
                                             position: absolute;
                                             width: 100%;
@@ -1225,34 +1251,42 @@
                                             line-height: 25px;
                                             font-weight: 500;
                                             font-size: 13px;
-                                            transition: color 0.3s ease;
+                                            pointer-events: none;
                                         }
                                     </style>
-
+                                    
                                     @php
                                         $stok = $p->stok ?? 0;
                                         $stokMaks = 100;
                                         $persenSisa = min(100, ($stok / $stokMaks) * 100);
-
+                                    
                                         if ($stok > 10) {
-                                            $statusStok = 'Stok Tebatas';
+                                            $statusStok = 'Stok Terbatas';
                                         } elseif ($stok > 5) {
                                             $statusStok = 'Mulai menipis';
                                         } else {
                                             $statusStok = 'Hampir habis!';
                                         }
-
-                                        // 💡 Ubah warna teks otomatis berdasarkan panjang bar
+                                    
                                         $textColor = $persenSisa < 40 ? 'text-dark' : 'text-white';
                                     @endphp
-
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar"
-                                            style="width: {{ $persenSisa }}%;" aria-valuenow="{{ $persenSisa }}"
-                                            aria-valuemin="0" aria-valuemax="100">
+                                    
+                                    <div class="progress-wrapper">
+                                    
+                                        <!-- ⚡ Ikon petir menimpa progress bar -->
+                                        <i class="fa-solid fa-bolt bolt-icon"></i>
+                                    
+                                        <div class="progress">
+                                            <div class="progress-bar"
+                                                 style="width: {{ $persenSisa }}%;"></div>
+                                    
+                                            <div class="progress-text {{ $textColor }}">
+                                                {{ $statusStok }}
+                                            </div>
                                         </div>
-                                        <div class="progress-text {{ $textColor }}">{{ $statusStok }}</div>
+                                    
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>

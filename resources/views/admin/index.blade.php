@@ -79,7 +79,7 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-xl-8">
+        <div class="col-md-12 col-xl-7">
             <h5 class="mb-3">Total Penjualan</h5>
             <div class="card shadow-sm rounded-3">
                 <div class="card-body">
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-xl-4">
+        <div class="col-md-12 col-xl-5">
             <h5 class="mb-3 fw-semibold text-dark">Riwayat Transaksi</h5>
             <div class="card shadow-sm rounded-3">
                 <div class="list-group list-group-flush">

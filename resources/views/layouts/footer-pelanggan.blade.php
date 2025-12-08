@@ -1,96 +1,128 @@
-<!--================ Start footer Area  =================-->
-<footer class="footer">
-    <div class="footer-area">
-        <div class="container">
-            <div class="row section_gap">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-footer-widget tp_widgets">
-                        <h4 class="footer_title large_title">Our Mission</h4>
-                        <p>
-                            So seed seed green that winged cattle in. Gathering thing made fly you're no
-                            divided deep moved us lan Gathering thing us land years living.
-                        </p>
-                        <p>
-                            So seed seed green that winged cattle in. Gathering thing made fly you're no divided
-                            deep moved
-                        </p>
-                    </div>
-                </div>
-                <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-                    <div class="single-footer-widget tp_widgets">
-                        <h4 class="footer_title">Quick Links</h4>
-                        <ul class="list">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Shop</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Product</a></li>
-                            <li><a href="#">Brand</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-6 col-sm-6">
-                    <div class="single-footer-widget instafeed">
-                        <h4 class="footer_title">Gallery</h4>
-                        <ul class="list instafeed d-flex flex-wrap">
-                            <li><img src="{{ asset('assets-user') }}/img/gallery/r1.jpg" alt=""></li>
-                            <li><img src="{{ asset('assets-user') }}/img/gallery/r2.jpg" alt=""></li>
-                            <li><img src="{{ asset('assets-user') }}/img/gallery/r3.jpg" alt=""></li>
-                            <li><img src="{{ asset('assets-user') }}/img/gallery/r5.jpg" alt=""></li>
-                            <li><img src="{{ asset('assets-user') }}/img/gallery/r7.jpg" alt=""></li>
-                            <li><img src="{{ asset('assets-user') }}/img/gallery/r8.jpg" alt=""></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-footer-widget tp_widgets">
-                        <h4 class="footer_title">Contact Us</h4>
-                        <div class="ml-40">
-                            <p class="sm-head">
-                                <span class="fa fa-location-arrow"></span>
-                                Head Office
-                            </p>
-                            <p>123, Main Street, Your City</p>
+<footer class="footer-modern pt-5 pb-4" style="background-color: #002347;">
+    <div class="container">
+        <div class="row">
 
-                            <p class="sm-head">
-                                <span class="fa fa-phone"></span>
-                                Phone Number
-                            </p>
-                            <p>
-                                +123 456 7890 <br>
-                                +123 456 7890
-                            </p>
+            <!-- Brand & Description -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h4 class="fw-bold mb-3 text-white">Go Happy Mart</h4>
+                <p class="text-footer">
+                    Go Happy Mart adalah Usaha UMKM yang menyediakan berbagai kebutuhan dan peralatan laundry.
+                    Kami berkomitmen menghadirkan produk berkualitas, harga terjangkau, serta layanan yang terpercaya
+                    untuk mendukung usaha laundry skala kecil hingga besar.
+                </p>
 
-                            <p class="sm-head">
-                                <span class="fa fa-envelope"></span>
-                                Email
-                            </p>
-                            <p>
-                                free@infoexample.com <br>
-                                www.infoexample.com
-                            </p>
-                        </div>
-                    </div>
+
+                <div class="social-links mt-3">
+                    <a href="#" class="social-item"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-item"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-item"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="footer-bottom">
-        <div class="container">
-            <div class="row d-flex">
-                <p class="col-lg-12 footer-text text-center">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script> All rights reserved | This template is made with <i
-                        class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                        target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <!-- Quick Links -->
+            <div class="col-lg-2 col-md-6 mb-4">
+                <h5 class="fw-bold mb-3 text-white">Navigasi</h5>
+                <ul class="footer-list">
+                    <li><a href="/">Beranda</a></li>
+                    <li><a href="/berita">Berita</a></li>
+                    <li><a href="/tentang-kami">Tentang Kami</a></li>
+                    <li><a href="/kontak">Kontak</a></li>
+                </ul>
+            </div>
+
+            <!-- Customer Support -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="fw-bold mb-3 text-white">Bantuan</h5>
+                <ul class="footer-list">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Kebijakan Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Cara Belanja</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-lg-3 col-md-6 mb-4">
+                <h5 class="fw-bold mb-3 text-white">Kontak Kami</h5>
+
+                <p class="text-footer mb-2">
+                    <i class="fa fa-map-marker-alt"></i>&nbsp;&nbsp; Jl. Contoh Raya No. 123, Indonesia
+                </p>
+                <p class="text-footer mb-2">
+                    <i class="fa fa-phone "></i>&nbsp;&nbsp; +62 812-3456-7890
+                </p>
+                <p class="text-footer mb-2">
+                    <i class="fa fa-envelope "></i>&nbsp;&nbsp; support@gohappymart.com
+                </p>
+                <p class="text-footer">
+                    <i class="fa fa-clock "></i>&nbsp;&nbsp; Senin – Minggu: 08.00 – 21.00
                 </p>
             </div>
+
+        </div>
+
+        <hr class="footer-line">
+
+        <div class="text-center text-footer small mt-3">
+            ©
+            <script>
+                document.write(new Date().getFullYear());
+            </script> Go Happy Mart • Semua Hak Dilindungi.
         </div>
     </div>
 </footer>
-<!--================ End footer Area  =================-->
+<style>
+    .footer-modern {
+        color: #dce5ff;
+        font-size: 14px;
+    }
+
+    .text-footer {
+        color: #dce5ff;
+    }
+
+    .footer-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer-list li {
+        margin-bottom: 10px;
+    }
+
+    .footer-list a {
+        color: #dce5ff;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .footer-list a:hover {
+        color: #ffffff;
+        padding-left: 4px;
+    }
+
+    .social-links .social-item {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+        margin-right: 8px;
+        transition: 0.3s;
+    }
+
+    .social-links .social-item:hover {
+        background-color: #0d6efd;
+        transform: translateY(-3px);
+    }
+
+    .footer-line {
+        border: 0;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.15);
+        margin-top: 25px;
+    }
+</style>

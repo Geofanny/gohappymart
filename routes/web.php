@@ -172,6 +172,10 @@ Route::middleware(['auth.admin', 'role:admin'])->group(function () {
      Route::get('/pelanggan/print', [LaporanController::class, 'printPelanggan'])
      ->name('pelanggan.print');
 
+    Route::get('/dashboard/laporan/penjualan', [PesananController::class, 'menuLaporanPenjualan']);
+
+    Route::get('/laporan-penjualan/pdf', [LaporanController::class, 'generatePenjualanPdf'])->name('laporan-penjualan.pdf');
+
 });
 
 Route::middleware(['auth.admin', 'role:admin,superadmin'])->group(function () {

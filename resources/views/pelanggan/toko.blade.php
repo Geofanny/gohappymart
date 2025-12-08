@@ -93,43 +93,66 @@
 
 @section('content')
     <div class="container mt-4">
-        <div class="section-intro mb-5">
-            <h2>Tentang <span class="section-intro__style">Kami</span></h2>
-        </div>
-        <div class="mb-4">
-            <p class="text-muted">
-                {!! $toko->deskripsi !!}
-            </p>
-        </div>
+        @if (!$toko)
+            <div class="mt-5 mb-5 text-center" style="padding: 40px 0;">
+                <h4 class="fw-semibold" style="color: #333;">
+                    Informasi Toko Belum Tersedia
+                </h4>
 
-        <div class="image-section mb-5">
-            <img src="{{ asset('storage/uploads/toko/gambar/'. $toko->gambar) }}" alt="Tentang Kami" class="main-image">
+                <p class="text-muted" style="font-size: 0.95rem; line-height: 1.6; max-width: 480px; margin: 10px auto 0;">
+                    Data mengenai toko saat ini belum ditambahkan.
+                    Silakan kembali lagi nanti untuk melihat informasi terbaru.
+                </p>
 
-            <!-- Card Motto -->
-            <div class="overlay-card card-motto">
-                <h5 class="fw-bold text-primary">Motto Kami</h5>
-                <p>{{ $toko->tagline }}</p>
+                <div
+                    style="
+                height: 3px;
+                width: 70px;
+                background: #dcdcdc;
+                border-radius: 50px;
+                margin: 25px auto 0;
+            ">
+                </div>
             </div>
-
-            <!-- Card Visi -->
-            <div class="overlay-card card-visi">
-                <h5 class="fw-bold text-success">Visi</h5>
-                <p>{{ $toko->visi }}</p>
+        @else
+            <div class="section-intro mb-5">
+                <h2>Tentang <span class="section-intro__style">Kami</span></h2>
             </div>
-
-            <!-- Card Misi -->
-            <div class="overlay-card card-misi">
-                <h5 class="fw-bold text-warning">Misi</h5>
-                <p>
-                    {{ $toko->misi }}
+            <div class="mb-4">
+                <p class="text-muted">
+                    {!! $toko->deskripsi !!}
                 </p>
             </div>
-        </div>
+
+            <div class="image-section mb-5">
+                <img src="{{ asset('storage/uploads/toko/gambar/' . $toko->gambar) }}" alt="Tentang Kami" class="main-image">
+
+                <!-- Card Motto -->
+                <div class="overlay-card card-motto">
+                    <h5 class="fw-bold text-primary">Motto Kami</h5>
+                    <p>{{ $toko->tagline }}</p>
+                </div>
+
+                <!-- Card Visi -->
+                <div class="overlay-card card-visi">
+                    <h5 class="fw-bold text-success">Visi</h5>
+                    <p>{{ $toko->visi }}</p>
+                </div>
+
+                <!-- Card Misi -->
+                <div class="overlay-card card-misi">
+                    <h5 class="fw-bold text-warning">Misi</h5>
+                    <p>
+                        {{ $toko->misi }}
+                    </p>
+                </div>
+            </div>
+        @endif
     </div>
 @endsection
 
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const cards = document.querySelectorAll('.overlay-card');

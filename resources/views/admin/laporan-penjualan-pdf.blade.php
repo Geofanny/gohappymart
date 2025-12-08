@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="{{ public_path('../assets/images/logo-toko.png') }}" type="image/x-icon">
-    <title>Laporan Keuangan</title>
+    <title>Laporan Penjualan</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -32,7 +32,6 @@
         }
 
         h3 {
-            text-align: center;
             margin-top: 0;
         }
 
@@ -98,7 +97,7 @@
         $bulanNama = \Carbon\Carbon::createFromDate($tahun, $bulan, 1)->translatedFormat('F');
     @endphp
 
-    <h3>Laporan Keuangan Bulanan<br>{{ $bulanNama }} {{ $tahun }}</h3>
+    <h3>Laporan Keuangan Bulanan {{ $bulanNama }} {{ $tahun }}</h3>
 
 
     <table>
@@ -122,6 +121,7 @@
                 </tr>
             @endforeach
         </tbody>
+        
         <tfoot>
             <tr>
                 <td colspan="4" class="text-right">Total Pemasukan</td>
@@ -137,6 +137,99 @@
             </tr>
         </tfoot>
     </table>
+
+    <h4>1. Penjualan</h4>
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>No Pesanan</th>
+            <th>Tanggal</th>
+            <th>Metode Pembayaran</th>
+            <th>Jasa Kirim</th>
+            <th class="text-right">Total (Rp)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($laporanPesananSelesai as $key => $order)
+            <tr>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $order['no_pesanan'] }}</td>
+                <td>{{ $order['tgl_pesanan']->format('d-m-Y') }}</td>
+                <td>{{ $order['metode_pembayaran'] }}</td>
+                <td>{{ $order['jasa_kirim'] }}</td>
+                <td class="text-right">{{ number_format($order['total'], 0, ',', '.') }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+{{-- 2. Pengembalian Selesai --}}
+<h4>2. Pengembalian</h4>
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>No Pengembalian</th>
+            <th>Tanggal Selesai</th>
+            <th>No Pesanan</th>
+            <th class="text-right">Total (Rp)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($laporanPengembalian as $key => $pengembalian)
+            <tr>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $pengembalian['no_pengembalian'] }}</td>
+                <td>{{ $pengembalian['tgl_selesai']->format('d-m-Y') }}</td>
+                <td>{{ $pengembalian['pesanan'] }}</td>
+                <td class="text-right">{{ number_format($pengembalian['total'], 0, ',', '.') }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+{{-- 3. Produk Terjual --}}
+<h4>3. Produk Terjual</h4>
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nama Produk</th>
+            <th class="text-right">Jumlah Terjual</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($produkTerjual as $key => $produk)
+            <tr>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $produk['nama'] }}</td>
+                <td class="text-right">{{ $produk['jumlah'] }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+
+{{-- 4. Produk Dikembalikan --}}
+<h4>4. Produk Dikembalikan</h4>
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nama Produk</th>
+            <th class="text-right">Jumlah Dikembalikan</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($produkDikembalikan as $key => $produk)
+            <tr>
+                <td>{{ $key + 1 }}</td>
+                <td>{{ $produk['nama'] }}</td>
+                <td class="text-right">{{ $produk['jumlah'] }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
     <footer>
         Dicetak pada: {{ \Carbon\Carbon::now()->format('d-m-Y H:i') }}

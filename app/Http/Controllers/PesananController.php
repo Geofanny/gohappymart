@@ -865,6 +865,83 @@ class PesananController extends Controller
     
         return view('superAdmin.laporan-keuangan', compact('recentTransactions', 'totalPemasukan', 'totalPengeluaran'));
     }
+
+    public function menuLaporanPenjualan()
+    {
+        $riwayatTransaksi = Pesanan::with(['produk.produk', 'pengembalian.item.produk'])
+                                    ->orderBy('tgl_pesanan', 'desc')
+                                    ->get();
+
+        $recentTransactions = [];
+        $totalTransaksi = 0;
+
+        foreach ($riwayatTransaksi as $order) {
+
+            // ---------------------
+            // Pemasukan (Pesanan Selesai)
+            // ---------------------
+            if ($order->status === 'selesai') {
+
+                $totalMasuk = 0;
+
+                foreach ($order->produk as $pp) {
+                    $jumlah = $pp->jumlah;
+                    $harga = $pp->produk->harga ?? 0;
+                    $totalMasuk += $jumlah * $harga;
+                }
+
+                if($totalMasuk > 0){
+                    $recentTransactions[] = [
+                        'no' => $order->no_pesanan,
+                        'time' => Carbon::parse($order->tgl_pesanan),
+                        'amount' => $totalMasuk,
+                        'type' => 'in',
+                    ];
+
+                    $totalTransaksi++; // hitung transaksi selesai
+                }
+            }
+
+            // ---------------------
+            // Pengeluaran (Pengembalian Dana Selesai)
+            // ---------------------
+            foreach ($order->pengembalian as $pengembalian) {
+                if ($pengembalian->solusi === 'Pengembalian dana' && $pengembalian->status === 'Selesai') {
+                    $totalPengembalian = 0;
+
+                    foreach ($pengembalian->item as $item) {
+                        $pp = $order->produk->firstWhere('id_produk', $item->id_produk);
+                        $jumlah = $pp->jumlah ?? 1;
+                        $harga = $item->produk->harga ?? 0;
+                        $totalPengembalian += $jumlah * $harga;
+                    }
+
+                    if ($totalPengembalian > 0) {
+                        $recentTransactions[] = [
+                            'no' => $order->no_pesanan,
+                            'time' => Carbon::parse($pengembalian->tgl_selesai ?? $pengembalian->tgl_pengajuan),
+                            'amount' => $totalPengembalian,
+                            'type' => 'out',
+                        ];
+
+                        $totalTransaksi++; // hitung transaksi selesai
+                    }
+                }
+            }
+        }
+
+        // Urutkan terbaru dulu
+        $recentTransactions = collect($recentTransactions)
+                                ->sortByDesc('time')
+                                ->values();
+
+        // Hitung total pemasukan & pengeluaran
+        $totalPemasukan = $recentTransactions->where('type', 'in')->sum('amount');
+        $totalPengeluaran = $recentTransactions->where('type', 'out')->sum('amount');
+
+        return view('admin.laporan-penjualan', compact('recentTransactions', 'totalPemasukan', 'totalPengeluaran', 'totalTransaksi'));
+    }
+
     
 
 }

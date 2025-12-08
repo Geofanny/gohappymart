@@ -233,6 +233,16 @@
                             <span class="pc-mtext"> FAQ</span>
                         </a>
                     </li>
+                    <li class="pc-item pc-caption">
+                        <label>Laporan</label>
+                        <i class="ti ti-dashboard"></i>
+                    </li>
+                    <li class="pc-item">
+                        <a href="/dashboard/laporan/penjualan" class="pc-link">
+                            <span class="pc-micon"><i class="ti ti ti-file-invoice"></i></span>
+                            <span class="pc-mtext">Penjualan</span>
+                        </a>
+                    </li>
                 @endif
             </ul>
            

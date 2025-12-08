@@ -139,114 +139,124 @@
 @endsection
 
 @section('content')
-    <!-- Hero Section -->
-    <section class="contact-hero">
-        <h2 style="color: white">Hubungi Kami</h2>
-        <p>Kami senang mendengar dari Anda! Silakan kirim pesan atau kunjungi kami langsung di lokasi toko.</p>
-    </section>
-
-    <!-- Main Content -->
-    <div class="contact-wrapper">
-        <!-- Kolom Kiri: Form -->
-        <div class="contact-card">
-            <h4 class="mb-3 text-primary fw-bold">Kirim Pesan</h4>
-            <form class="contact-form" method="POST" action="#">
-                @csrf
-                <div>
-                    <label>Nama Lengkap</label>
-                    <input type="text" name="nama" placeholder="Masukkan nama Anda" required>
-                </div>
-                <div>
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="Masukkan email aktif" required>
-                </div>
-                <div>
-                    <label>Subjek</label>
-                    <input type="text" name="subjek" placeholder="Masukkan subjek pesan" required>
-                </div>
-                <div>
-                    <label>Pesan</label>
-                    <textarea name="pesan" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
-                </div>
-                <button type="submit">Kirim Pesan</button>
-            </form>
+    @if(!$kontak)
+        <div class="mt-4 mb-3 text-center" style="padding: 20px 0;">
+            <h5 class="fw-semibold" style="color:#333;">Informasi Kontak Belum Tersedia</h5>
+            <p class="text-muted" style="font-size: 0.95rem; max-width: 420px; margin: 0 auto;">
+                Data kontak belum ditambahkan. Silakan kembali lagi nanti untuk melihat informasi terbaru.
+            </p>
+            <div style="height:3px; width:60px; background:#dcdcdc; border-radius:50px; margin:20px auto 0;"></div>
         </div>
+    @else
+        <!-- Hero Section -->
+        <section class="contact-hero">
+            <h2 style="color: white">Hubungi Kami</h2>
+            <p>Kami senang mendengar dari Anda! Silakan kirim pesan atau kunjungi kami langsung di lokasi toko.</p>
+        </section>
 
-        @php
-            // Pisahkan alamat dan koordinat
-            $alamatParts = explode('|', $kontak->alamat);
-            $alamatTeks = trim($alamatParts[0]);
-            $koordinat = isset($alamatParts[1]) ? trim($alamatParts[1]) : null;
-
-            // Default lokasi jika tidak ada koordinat
-            $defaultMap =
-                'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7093916783285!2d106.82370107475128!3d-6.175392460519197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e3a1b0d3f9%3A0x5039cf9b4575b50!2sMonas!5e0!3m2!1sid!2sid!4v1691234567890!5m2!1sid!2sid';
-
-            // Buat URL peta dinamis berdasarkan koordinat
-            $mapUrl = $koordinat ? "https://www.google.com/maps?q={$koordinat}&hl=id&z=15&output=embed" : $defaultMap;
-        @endphp
-
-        <div class="contact-card">
-            <h4 class="mb-3 text-primary fw-bold">Informasi Kontak</h4>
-
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fa-solid fa-location-dot"></i>
+        <!-- Main Content -->
+        <div class="contact-wrapper">
+            <!-- Kolom Kiri: Form -->
+            <div class="contact-card">
+                <h4 class="mb-3 text-primary fw-bold">Kirim Pesan</h4>
+                <form class="contact-form" method="POST" action="#">
+                    @csrf
                     <div>
-                        <h6>Alamat</h6>
-                        <p>{{ $alamatTeks }}</p>
+                        <label>Nama Lengkap</label>
+                        <input type="text" name="nama" placeholder="Masukkan nama Anda" required>
                     </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fa-solid fa-phone"></i>
                     <div>
-                        <h6>Telepon</h6>
-                        <p>{{ $kontak->no_hp }}</p>
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Masukkan email aktif" required>
                     </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fa-solid fa-envelope"></i>
                     <div>
-                        <h6>Email</h6>
-                        <p>{{ $kontak->email }}</p>
+                        <label>Subjek</label>
+                        <input type="text" name="subjek" placeholder="Masukkan subjek pesan" required>
                     </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fa-brands fa-whatsapp"></i>
                     <div>
-                        <h6>WhatsApp</h6>
-                        <p><a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $kontak->no_hp) }}" target="_blank"
-                                style="color:#007bff; text-decoration:none;">Chat Sekarang</a></p>
+                        <label>Pesan</label>
+                        <textarea name="pesan" rows="5" placeholder="Tulis pesan Anda di sini..." required></textarea>
                     </div>
-                </div>
+                    <button type="submit">Kirim Pesan</button>
+                </form>
             </div>
 
-            <!-- Maps Dinamis -->
-            <div class="contact-map" style="position: relative;">
-                <iframe src="{{ $mapUrl }}" allowfullscreen loading="lazy"></iframe>
-                <div class="circle-overlay"></div>
-            </div>
-            <style>
-                .circle-overlay {
-                    position: absolute;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 50%;
-                    border: 3px solid red;
-                    background-color: rgba(255, 0, 0, 0.2);
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    pointer-events: none;
-                    /* biar iframe tetap bisa diklik */
-                }
-            </style>
-        </div>
+            @php
+                // Pisahkan alamat dan koordinat
+                $alamatParts = explode('|', $kontak->alamat);
+                $alamatTeks = trim($alamatParts[0]);
+                $koordinat = isset($alamatParts[1]) ? trim($alamatParts[1]) : null;
 
-    </div>
+                // Default lokasi jika tidak ada koordinat
+                $defaultMap =
+                    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7093916783285!2d106.82370107475128!3d-6.175392460519197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e3a1b0d3f9%3A0x5039cf9b4575b50!2sMonas!5e0!3m2!1sid!2sid!4v1691234567890!5m2!1sid!2sid';
+
+                // Buat URL peta dinamis berdasarkan koordinat
+                $mapUrl = $koordinat ? "https://www.google.com/maps?q={$koordinat}&hl=id&z=15&output=embed" : $defaultMap;
+            @endphp
+
+            <div class="contact-card">
+                <h4 class="mb-3 text-primary fw-bold">Informasi Kontak</h4>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <h6>Alamat</h6>
+                            <p>{{ $alamatTeks }}</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <h6>Telepon</h6>
+                            <p>{{ $kontak->no_hp }}</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <h6>Email</h6>
+                            <p>{{ $kontak->email }}</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <div>
+                            <h6>WhatsApp</h6>
+                            <p><a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $kontak->no_hp) }}" target="_blank"
+                                    style="color:#007bff; text-decoration:none;">Chat Sekarang</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maps Dinamis -->
+                <div class="contact-map" style="position: relative;">
+                    <iframe src="{{ $mapUrl }}" allowfullscreen loading="lazy"></iframe>
+                    <div class="circle-overlay"></div>
+                </div>
+                <style>
+                    .circle-overlay {
+                        position: absolute;
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        border: 3px solid red;
+                        background-color: rgba(255, 0, 0, 0.2);
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        pointer-events: none;
+                        /* biar iframe tetap bisa diklik */
+                    }
+                </style>
+            </div>
+
+        </div>
+    @endif
 @endsection
 
 @section('script')

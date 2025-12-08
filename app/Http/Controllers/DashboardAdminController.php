@@ -382,6 +382,47 @@ class DashboardAdminController extends Controller
         $pieLabels = $produkTerlaris->pluck('produk.nama_produk');
         $pieValues = $produkTerlaris->pluck('total_terjual');
 
+        $penjualanPromo = PesananProduk::selectRaw('
+            MONTH(pesanan.tgl_pesanan) as bulan,
+            promo.kategori,
+            SUM(pesanan_produk.jumlah) as total_terjual
+        ')
+        ->join('pesanan', 'pesanan.id_pesanan', '=', 'pesanan_produk.id_pesanan')
+        ->leftJoin('pengembalian', function($join){
+            $join->on('pengembalian.id_pesanan', '=', 'pesanan.id_pesanan')
+                ->where('pengembalian.status', 'Selesai');
+        })
+        ->join('produk_promo', 'produk_promo.id_produk', '=', 'pesanan_produk.id_produk')
+        ->join('promo', 'promo.id_promo', '=', 'produk_promo.id_promo')
+        ->where('pesanan.status', 'Selesai')
+        ->whereNull('pengembalian.id_pengembalian') // pastikan tidak ada pengembalian selesai
+        ->groupBy('bulan', 'promo.kategori')
+        ->get();
+
+        $labels = [];
+        $seriesFlash = [];
+        $seriesBig = [];
+        $seriesUmum = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+
+            $labels[] = Carbon::create(null, $i, 1)->translatedFormat('M');
+
+            $seriesFlash[] = $penjualanPromo->where('bulan', $i)
+                                            ->where('kategori', 'flashsale')
+                                            ->sum('total_terjual');
+
+            $seriesBig[] = $penjualanPromo->where('bulan', $i)
+                                        ->where('kategori', 'bigsale')
+                                        ->sum('total_terjual');
+
+            $seriesUmum[] = $penjualanPromo->where('bulan', $i)
+                                        ->where('kategori', 'umum')
+                                        ->sum('total_terjual');
+        }
+
+
+
         // dd($pieLabels);
 
         return view('superAdmin.index', compact(
@@ -401,7 +442,11 @@ class DashboardAdminController extends Controller
             'lowStock',
             'recentRatings',
             'pieLabels',
-            'pieValues'
+            'pieValues',
+            'labels',
+            'seriesFlash',
+            'seriesBig',
+            'seriesUmum'
         ));
     }
     

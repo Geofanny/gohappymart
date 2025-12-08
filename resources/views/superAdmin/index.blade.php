@@ -72,7 +72,7 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-xl-8">
+        <div class="col-md-12 col-xl-7">
             <h5 class="mb-3">Total Penjualan</h5>
             <div class="card shadow-sm rounded-3">
                 <div class="card-body">
@@ -83,7 +83,7 @@
             </div>
         </div>
 
-        <div class="col-md-12 col-xl-4">
+        <div class="col-md-12 col-xl-5">
             <h5 class="mb-3 fw-semibold text-dark">Riwayat Transaksi</h5>
             <div class="card shadow-sm rounded-3">
                 <div class="list-group list-group-flush">
@@ -222,6 +222,17 @@
 
         </div>
 
+        <div class="col-md-12 col-xl-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Grafik Promo Penjualan</h5>
+                </div>
+                <div class="card-body">
+                    <div id="mixed-chart-2"></div>
+                </div>
+            </div>
+        </div>
+
         <div class="col-md-12 col-xl-8">
             <h5 class="mb-3">Pesanan Terbaru</h5>
             <div class="card shadow-sm rounded-3 tbl-card">
@@ -252,7 +263,7 @@
                                         <td><a href="#" class="text-muted">{{ $order->no_pesanan }}</a></td>
                                         <td>
                                             @foreach ($order->produk as $p)
-                                                {{ Str::limit($p->produk->nama_produk,30) ?? '-' }}@if (!$loop->last)
+                                                {{ Str::limit($p->produk->nama_produk, 30) ?? '-' }}@if (!$loop->last)
                                                     ,
                                                 @endif
                                             @endforeach
@@ -290,7 +301,7 @@
         </div>
 
         <div class="col-md-12 col-xl-4">
-            <h5 class="mb-3 fw-semibold text-dark">Produk Terlaris</h5>
+            {{-- <h5 class="mb-3 fw-semibold text-dark">Produk Terlaris</h5>
             <div class="card shadow-sm rounded-3">
                 <div class="card-header">
                     <h5>Produk Paling Banyak Dipesan</h5>
@@ -298,9 +309,9 @@
                 <div class="card-body">
                     <div id="pie-produk-terlaris" style="width: 100%; height: 350px;"></div>
                 </div>
-            </div>            
+            </div>             --}}
 
-            <h5 class="mb-3 fw-semibold text-dark">Stok Hampir Habis</h5>
+            <h5 class="mb-3 fw-semibold text-dark">Stok Produk</h5>
             <div class="card shadow-sm rounded-3">
                 <div class="list-group list-group-flush">
 
@@ -603,6 +614,7 @@
     <!-- [Page Specific JS] end -->
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <script>
         (function() {
             var labels = @json($chartLabels);
@@ -699,45 +711,102 @@
             }
         })();
     </script>
-   <script>
-    console.log("Pie Labels:", @json($pieLabels));
-    console.log("Pie Values:", @json($pieValues));
+    {{-- <script>
+        console.log("Pie Labels:", @json($pieLabels));
+        console.log("Pie Values:", @json($pieValues));
 
-    var options_pie_chart_1 = {
-        chart: {
-            height: 320,
-            type: 'pie'
-        },
-        labels: @json($pieLabels),
-        series: @json($pieValues),
-        colors: ['#1890ff', '#52c41a', '#13c2c2', '#faad14', '#ff4d4f'],
-        legend: {
-            show: true,
-            position: 'bottom'
-        },
-        dataLabels: {
-            enabled: true,
-            dropShadow: {
-                enabled: false
-            }
-        },
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                legend: {
-                    position: 'bottom'
+        var options_pie_chart_1 = {
+            chart: {
+                height: 320,
+                type: 'pie'
+            },
+            labels: @json($pieLabels),
+            series: @json($pieValues),
+            colors: ['#1890ff', '#52c41a', '#13c2c2', '#faad14', '#ff4d4f'],
+            legend: {
+                show: true,
+                position: 'bottom'
+            },
+            dataLabels: {
+                enabled: true,
+                dropShadow: {
+                    enabled: false
+                }
+            },
+            responsive: [{
+                breakpoint: 480,
+                options: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }]
+        };
+
+        console.log("Options Final:", options_pie_chart_1);
+
+        var chart_pie_chart_1 = new ApexCharts(
+            document.querySelector('#pie-produk-terlaris'),
+            options_pie_chart_1
+        );
+        chart_pie_chart_1.render();
+    </script> --}}
+    <script>
+        var options_mixed_chart_2 = {
+            chart: {
+                height: 350,
+                type: 'line',
+                stacked: false
+            },
+            stroke: {
+                width: 3,
+                curve: 'smooth'
+            },
+
+            colors: ['#ff4d4f', '#1890ff', '#52c41a'],
+
+            series: [{
+                    name: 'Flash Sale',
+                    type: 'line',
+                    data: @json($seriesFlash)
+                },
+                {
+                    name: 'Big Sale',
+                    type: 'line',
+                    data: @json($seriesBig)
+                },
+                {
+                    name: 'Promo Lainnya (Umum)',
+                    type: 'line',
+                    data: @json($seriesUmum)
+                }
+            ],
+
+            xaxis: {
+                categories: @json($labels)
+            },
+
+            yaxis: {
+                min: 0
+            },
+
+            tooltip: {
+                shared: true,
+                intersect: false
+            },
+
+            legend: {
+                labels: {
+                    useSeriesColors: true
                 }
             }
-        }]
-    };
+        };
 
-    console.log("Options Final:", options_pie_chart_1);
+        var charts_mixed_chart_2 = new ApexCharts(
+            document.querySelector('#mixed-chart-2'),
+            options_mixed_chart_2
+        );
 
-    var chart_pie_chart_1 = new ApexCharts(
-        document.querySelector('#pie-produk-terlaris'),
-        options_pie_chart_1
-    );
-    chart_pie_chart_1.render();
-</script>
-
+        charts_mixed_chart_2.render();
+    </script>
 @endsection

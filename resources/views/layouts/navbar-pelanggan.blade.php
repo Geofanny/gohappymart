@@ -16,24 +16,20 @@
                  </button>
                  <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                      <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                         <li class="nav-item active"><a class="nav-link" href="/">Beranda</a></li>
-                         <li class="nav-item submenu dropdown">
+                        <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
+                            <a class="nav-link" href="/">Beranda</a>
+                        </li>
+                        <li class="nav-item submenu dropdown {{ Request::is('berita*') ? 'active' : '' }}">
                             <a href="/berita" class="nav-link">Berita</a>
-                         </li>
-                         <li class="nav-item submenu dropdown">
-                             <a href="/tentang-kami" class="nav-link">Tentang Kami</a>
-                             {{-- <a href="/tentang-kami" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                 aria-haspopup="true" aria-expanded="false">Tentang Kami</a> --}}
-                             {{-- <ul class="dropdown-menu">
-                                 <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                 <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a>
-                                 </li>
-                             </ul> --}}
-                         </li>
-                         {{-- <li class="nav-item submenu dropdown">
-                             <a href="/faq" class="nav-link">Lacak</a>
-                         </li> --}}
-                         <li class="nav-item"><a class="nav-link" href="/kontak">Kontak</a></li>
+                        </li>
+                    
+                        <li class="nav-item submenu dropdown {{ Request::is('tentang-kami') ? 'active' : '' }}">
+                            <a href="/tentang-kami" class="nav-link">Tentang Kami</a>
+                        </li>
+                    
+                        <li class="nav-item {{ Request::is('kontak') ? 'active' : '' }}">
+                            <a class="nav-link" href="/kontak">Kontak</a>
+                        </li>
                      </ul>
 
                      <ul class="nav-shop">
